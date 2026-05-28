@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Paul Moon · 360° Creative Marketing Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F0E8;--ink:#0E0E0C;--mid:#5A5A52;
+  --accent:#C8502A;--accent-soft:#F0E4DC;
+  --border:rgba(14,14,12,0.11);
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'DM Mono',monospace;--sans:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .2s;mix-blend-mode:multiply}
+#cursor-ring{position:fixed;width:38px;height:38px;border-radius:50%;border:1px solid rgba(200,80,42,.35);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:5px;height:5px}
+body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:56px;height:56px;border-color:rgba(200,80,42,.55)}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:10000;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:var(--serif);font-size:2.8rem;color:var(--cream);opacity:0;animation:fadeIn .5s .2s forwards}
+.loader-bar-wrap{width:180px;height:1px;background:rgba(255,255,255,.1);margin:.8rem auto 0;overflow:hidden}
+.loader-bar{height:100%;width:0;background:var(--accent);animation:lBar 1.3s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes lBar{0%{width:0}60%{width:65%}100%{width:100%}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(245,240,232,0);backdrop-filter:blur(0);border-bottom:.5px solid transparent;transition:all .4s ease}
+nav.scrolled{background:rgba(245,240,232,.95);backdrop-filter:blur(20px);border-bottom-color:var(--border);padding:.8rem 3rem}
+.nav-logo img{height:30px;display:block;opacity:0;transition:opacity .4s}
+nav.scrolled .nav-logo img{opacity:1}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;font-weight:600;transition:color .2s;position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-right{display:flex;gap:1rem;align-items:center}
+.nav-li{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--mid);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.nav-li:hover{color:var(--ink)}
+.nav-cta{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:var(--ink);text-decoration:none;padding:.55rem 1.3rem;transition:background .2s}
+.nav-cta:hover{background:var(--accent)}
+
+/* HERO */
+.page-hero{min-height:55vh;display:grid;grid-template-columns:1fr 1fr;padding-top:5rem;border-bottom:.5px solid var(--border)}
+.ph-left{padding:6rem 4rem 4rem 3rem;display:flex;flex-direction:column;justify-content:flex-end;border-right:.5px solid var(--border)}
+.ph-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fadeUp .7s 1.6s forwards}
+.ph-eyebrow::before{content:'';width:2rem;height:1px;background:var(--accent)}
+h1.ph-title{font-family:var(--serif);font-size:clamp(3rem,5vw,6rem);line-height:1;letter-spacing:-.01em;margin-bottom:1rem;opacity:0;animation:fadeUp .8s 1.7s forwards}
+h1.ph-title em{font-style:italic;color:var(--accent)}
+.ph-sub{font-size:14px;color:var(--mid);max-width:44ch;line-height:1.7;opacity:0;animation:fadeUp .7s 1.85s forwards}
+.ph-right{position:relative;overflow:hidden;background:var(--ink)}
+.ph-img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;filter:grayscale(.2);animation:imgIn 1s 1.4s cubic-bezier(.4,0,.2,1) forwards;transform:scale(1.06)}
+@keyframes imgIn{to{opacity:.75;transform:scale(1)}}
+.ph-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,14,12,.55) 0%,rgba(14,14,12,.05) 65%)}
+.ph-count{position:absolute;bottom:2.5rem;left:2.5rem;opacity:0;animation:fadeUp .6s 2.1s forwards}
+.ph-count-num{font-family:var(--serif);font-size:4rem;color:var(--cream);line-height:1}
+.ph-count-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.4)}
+
+/* TICKER */
+.ticker{overflow:hidden;padding:.85rem 0;background:var(--accent)}
+.ticker-inner{display:flex;width:max-content;animation:tick 28s linear infinite}
+.ticker-item{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.88);padding:0 2.5rem;white-space:nowrap;display:flex;align-items:center;gap:1.5rem}
+.ticker-item::after{content:'◆';font-size:7px;opacity:.45}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* FILTER BAR */
+.filter-bar{position:sticky;top:0;z-index:100;background:rgba(245,240,232,.97);backdrop-filter:blur(16px);border-bottom:.5px solid var(--border);padding:.9rem 3rem;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;transition:box-shadow .3s}
+.filter-bar.stuck{box-shadow:0 4px 24px rgba(14,14,12,.06)}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-right:1.5rem;white-space:nowrap;flex-shrink:0}
+.filter-btns{display:flex;gap:.4rem;flex-wrap:nowrap}
+.fb{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--mid);background:transparent;border:.5px solid var(--border);padding:.35rem .9rem;cursor:none;transition:background .2s,color .2s,border-color .2s;white-space:nowrap;flex-shrink:0}
+.fb:hover,.fb.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.filter-count{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);white-space:nowrap;flex-shrink:0}
+
+/* MAIN GRID */
+.grid-wrap{padding:2px 2px 4rem}
+.masonry{columns:4;column-gap:2px;padding:0}
+.card{break-inside:avoid;margin-bottom:2px;position:relative;overflow:hidden;cursor:none;display:block;text-decoration:none}
+.card img{width:100%;display:block;transition:transform .6s cubic-bezier(.4,0,.2,1),filter .5s;filter:saturate(.65);transform-origin:center}
+.card:hover img{transform:scale(1.05);filter:saturate(1)}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,12,.85) 0%,rgba(14,14,12,.1) 55%,transparent 100%);opacity:0;transition:opacity .35s}
+.card:hover .card-overlay{opacity:1}
+.card-info{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1rem .9rem;transform:translateY(8px);opacity:0;transition:transform .35s,opacity .35s}
+.card:hover .card-info{transform:none;opacity:1}
+.card-cat{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,232,.55);margin-bottom:.3rem}
+.card-title{font-family:var(--serif);font-size:1rem;color:var(--cream);line-height:1.25}
+.card-tag{position:absolute;top:.7rem;right:.7rem;font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;background:rgba(14,14,12,.7);color:rgba(245,240,232,.6);padding:.2rem .5rem;backdrop-filter:blur(4px);opacity:0;transition:opacity .3s .1s}
+.card:hover .card-tag{opacity:1}
+
+/* FEATURED CARDS (large) */
+.card--featured{columns:unset;break-inside:auto}
+.featured-row{display:grid;grid-template-columns:2fr 1fr;gap:2px;margin-bottom:2px}
+.featured-row .card img{height:420px;object-fit:cover}
+.featured-row .card:last-child img{height:420px}
+
+/* SECTION DIVIDERS */
+.section-divider{padding:3rem 3rem 1rem;border-top:.5px solid var(--border);margin-top:2rem}
+.sd-label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
+.sd-label::before{content:'';width:1.5rem;height:1px;background:var(--accent)}
+.sd-title{font-family:var(--serif);font-size:2rem;color:var(--ink);font-weight:normal}
+
+/* LIGHTBOX */
+#lightbox{position:fixed;inset:0;background:rgba(14,14,12,.96);z-index:8000;display:none;align-items:center;justify-content:center;padding:2rem;cursor:none}
+#lightbox.open{display:flex}
+#lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block;animation:lbIn .3s cubic-bezier(.4,0,.2,1)}
+@keyframes lbIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+#lb-caption{position:absolute;bottom:2.5rem;left:0;right:0;text-align:center;font-family:var(--serif);font-size:1rem;color:rgba(245,240,232,.65);font-style:italic;padding:0 3rem}
+#lb-close{position:absolute;top:1.5rem;right:2rem;font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.4);background:none;border:none;cursor:none;transition:color .2s;padding:.5rem}
+#lb-close:hover{color:var(--cream)}
+#lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.35);background:none;border:none;cursor:none;transition:color .2s;padding:1rem}
+#lb-prev{left:2rem}#lb-next{right:2rem}
+#lb-prev:hover,#lb-next:hover{color:var(--cream)}
+#lb-counter{position:absolute;top:1.8rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.3)}
+
+/* CTA STRIP */
+.cta-strip{background:var(--ink);padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.cs-title{font-family:var(--serif);font-size:clamp(2rem,3vw,3.5rem);color:var(--cream);line-height:1.05;margin-bottom:1rem;font-weight:normal}
+.cs-title em{font-style:italic;color:#d47a5a}
+.cs-body{font-size:15px;color:rgba(245,240,232,.5);line-height:1.8;margin-bottom:2rem}
+.cs-links{display:flex;flex-direction:column;gap:0}
+.cs-link-row{display:flex;align-items:baseline;gap:1rem;padding:1rem 0;border-bottom:.5px solid rgba(255,255,255,.06)}
+.cs-link-row:last-child{border:none}
+.cs-link-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.25);min-width:64px}
+.cs-link-val{font-size:15px;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(245,240,232,.12);padding-bottom:1px;transition:border-color .2s}
+.cs-link-val:hover{border-color:rgba(245,240,232,.5)}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:.95rem 2rem;transition:background .25s,color .25s;position:relative;overflow:hidden}
+.btn-primary:hover{background:var(--accent);color:var(--cream)}
+
+/* FOOTER */
+footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:.5px solid rgba(255,255,255,.04)}
+.footer-logo img{height:22px;filter:brightness(.4);transition:filter .3s}
+.footer-logo:hover img{filter:brightness(.65)}
+.footer-copy{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.18)}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.22);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(245,240,232,.55)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.08s}
+.reveal-delay-2{transition-delay:.16s}
+.reveal-delay-3{transition-delay:.24s}
+
+@keyframes fadeUp{to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div style="text-align:center">
+    <div class="loader-logo">PM</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lb-close">✕ Close</button>
+  <div id="lb-counter"></div>
+  <button id="lb-prev">← Prev</button>
+  <img id="lb-img" src="" alt="">
+  <button id="lb-next">Next →</button>
+  <div id="lb-caption"></div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=300w" alt="Paul Moon">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#philosophy-section">About</a></li>
+    <li><a href="index.html#expertise-section">Expertise</a></li>
+    <li><a href="#" class="active">Portfolio</a></li>
+    <li><a href="index.html#results-section">Results</a></li>
+    <li><a href="index.html#contact-section">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.linkedin.com/in/paultmoon/" target="_blank" class="nav-li">LinkedIn ↗</a>
+    <a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" class="nav-cta">View Resume</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="ph-left">
+    <p class="ph-eyebrow">Award-Winning Work</p>
+    <h1 class="ph-title">Marketing &amp;<br><em>Design Portfolio</em></h1>
+    <p class="ph-sub">A collection of award-winning marketing campaigns, brand systems, digital experiences, and creative projects across biotech and life sciences.</p>
+  </div>
+  <div class="ph-right">
+    <img class="ph-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5164b8fd-3a9d-4298-8871-d76f720e39fb/hero-main-collage-05c.jpg" alt="Portfolio collage">
+    <div class="ph-img-overlay"></div>
+    <div class="ph-count">
+      <div class="ph-count-num">90<span style="font-size:2rem">+</span></div>
+      <div class="ph-count-label">Projects Shown</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Web Design</span><span class="ticker-item">UI/UX</span><span class="ticker-item">Brand Identity</span><span class="ticker-item">Print Ads</span><span class="ticker-item">Trade Show Booths</span><span class="ticker-item">Brochures</span><span class="ticker-item">Email Campaigns</span><span class="ticker-item">Digital Ads</span><span class="ticker-item">Packaging</span><span class="ticker-item">Product Photography</span><span class="ticker-item">Logo Design</span><span class="ticker-item">Infographics</span><span class="ticker-item">Mobile Apps</span><span class="ticker-item">Social Media</span>
+    <span class="ticker-item">Web Design</span><span class="ticker-item">UI/UX</span><span class="ticker-item">Brand Identity</span><span class="ticker-item">Print Ads</span><span class="ticker-item">Trade Show Booths</span><span class="ticker-item">Brochures</span><span class="ticker-item">Email Campaigns</span><span class="ticker-item">Digital Ads</span><span class="ticker-item">Packaging</span><span class="ticker-item">Product Photography</span><span class="ticker-item">Logo Design</span><span class="ticker-item">Infographics</span><span class="ticker-item">Mobile Apps</span><span class="ticker-item">Social Media</span>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filter-bar">
+  <span class="filter-label">Filter by</span>
+  <div class="filter-btns">
+    <button class="fb active" data-filter="all">All Work</button>
+    <button class="fb" data-filter="web">Web + Digital</button>
+    <button class="fb" data-filter="uiux">UI / UX</button>
+    <button class="fb" data-filter="brand">Brand + Identity</button>
+    <button class="fb" data-filter="print">Print + Ads</button>
+    <button class="fb" data-filter="brochure">Brochures</button>
+    <button class="fb" data-filter="tradeshow">Trade Show</button>
+    <button class="fb" data-filter="email">Email + Social</button>
+    <button class="fb" data-filter="photo">Photography</button>
+    <button class="fb" data-filter="packaging">Packaging</button>
+  </div>
+  <span class="filter-count" id="filter-count">90 projects</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PORTFOLIO GRID                                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="grid-wrap">
+
+  <!-- FEATURED ROW: CDI Labs web + Berkeley Lights concept -->
+  <div class="featured-row" data-cat="web">
+    <div class="card" data-cat="web" data-title="Custom Web + CMS Design and Development for CDI Labs">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/fdd677a0-feaa-4721-9d53-db6f27bdbb19/web-cdi-us-home-02a.jpg" alt="CDI Labs website" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-tag">Web + CMS</div>
+      <div class="card-info"><div class="card-cat">CDI Labs</div><div class="card-title">Custom Web + CMS Design and Development</div></div>
+    </div>
+    <div class="card" data-cat="web" data-title="Custom Web Design Concept for Berkeley Lights">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/71b061a2-ecd2-4788-becb-bd4b5f82b6c7/web-concept-bli-software-01c.png" alt="Berkeley Lights web concept" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Custom Web Design Concept</div></div>
+    </div>
+  </div>
+
+  <!-- MASONRY GRID -->
+  <div class="masonry" id="masonry-grid">
+
+    <div class="card" data-cat="uiux" data-title="UI / UX Design for EVOS Microscopes (AMG)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/0919f0b1-a067-401a-8088-efe56fbd6d08/ui_amg_evos_flb.jpg" alt="EVOS UI/UX" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI / UX</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">UI / UX Design for EVOS Microscopes</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design and Development for Labcyte">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/ce7f4733-3341-4cf6-96ef-7f9433606ae5/web-labcyte-2019-01c.png" alt="Labcyte website" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Web Design and Development</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI / UX for FiberChek (JDSU)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/50ab281c-513f-4ffc-afa9-3131701d4edb/ui-fcpro-03.jpeg" alt="JDSU FiberChek UI" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI / UX</div>
+      <div class="card-info"><div class="card-cat">JDSU</div><div class="card-title">UI / UX for FiberChek</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer Design, Copy and Product Photography for EVOS XL Microscope">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6b0bb028-bc26-4f9a-8d3a-642dd19c26ab/flyer_evos_xl2.jpg" alt="EVOS XL flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Flyer + Product Photography — EVOS XL</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Custom Web Design and Development for AMG">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/ec9dca81-af91-4012-a4bb-08d05dcab285/web_amg_rev2C.png" alt="AMG website" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Custom Web Design and Development</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Custom Web + CMS Design and Development for Labcyte">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/48ac8d83-4608-4384-84d2-652cf8c68d68/web-labcyte-products-02a.png" alt="Labcyte products web" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web + CMS</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Custom Web + CMS — Products</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Custom Web Design Concept for Laxco">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/d2cf740c-6124-42f6-8eba-8df2f62a0149/web-laxco-03a.png" alt="Laxco web concept" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Laxco</div><div class="card-title">Custom Web Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web, Graphics, Animation for Labcyte">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/8873afd0-4902-4912-9463-8183211873db/web-tech-labcyte-01a.png" alt="Labcyte tech web" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web + Animation</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Web, Graphics + Animation</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design Concept for Berkeley Lights — Form">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3a180db8-decf-46b1-bbea-dfb49fcc34ee/web-concept-bli-form-01e.png" alt="Berkeley Lights form concept" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Web Design Concept — Collateral Form</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI / UX for nCounter System (NanoString)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/24d3dd23-58fa-4d90-a46a-b792bf38a84a/ui_nanostring_ncounter-01a.jpg" alt="NanoString nCounter UI" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI / UX</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">UI / UX for nCounter System</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="T-Shirt for EVOS Microscope (Thermo Fisher)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/fb40a2f2-acf9-4dc7-980e-b0134b061418/shirt-evos-microscope-round2.jpg" alt="EVOS t-shirt" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brand</div>
+      <div class="card-info"><div class="card-cat">Thermo Fisher / AMG</div><div class="card-title">T-Shirt Design — EVOS Microscope</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Beacon Select (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6665b5e2-8dd4-4226-8e8d-ffc0cfc51e53/POS-BLI-Beacon-Select-2023.jpg" alt="Beacon Select print ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Print Ad — Beacon Select</div></div>
+    </div>
+
+    <div class="card" data-cat="packaging" data-title="Packaging for CodeSet and TagSet (NanoString)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/941429f6-522f-4e81-a35a-9f789c9e8600/packaging_nanostring_codeset.jpg" alt="NanoString packaging" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Packaging</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">Packaging — CodeSet + TagSet</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="Mobile App Design Concept (Shomee)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/663b2d9a-150d-4d32-92db-303d8752a5e6/mobile-app-muzaic-concept-01b.jpg" alt="Shomee mobile app" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Mobile App</div>
+      <div class="card-info"><div class="card-cat">Shomee</div><div class="card-title">Mobile App Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="Mobile App Design Concept for Shomee">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3730ee00-c6b4-468a-8155-1396a4a56dd5/mobile-app-shomee.png" alt="Shomee app 2" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Mobile App</div>
+      <div class="card-info"><div class="card-cat">Shomee</div><div class="card-title">Mobile App Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design and Development — Purigen Microsite">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/cbeef0aa-7cc1-4648-8686-f270cad78624/web-purigen-distributor-01d.png" alt="Purigen microsite" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web + CMS</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Web + Distributor CMS Microsite</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="Logo Design Concept (HAVOS)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/2b31eb0a-eb02-43ff-b099-7e51640b6cce/logo-havos-01a.jpg" alt="HAVOS logo" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Logo</div>
+      <div class="card-info"><div class="card-cat">HAVOS</div><div class="card-title">Logo Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Infographic for Echo (Labcyte)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/eba57a70-1f55-4ea4-b5c4-d121d007f8d4/info-echo-sequencing.jpg" alt="Echo infographic" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Infographic</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Infographic — Echo Sequencing</div></div>
+    </div>
+
+    <div class="card" data-cat="photo" data-title="Product Photography for EVOS (AMG)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/dd023086-93ae-4019-b0f6-995a5703cacd/img-evos-fl-01a.jpeg" alt="EVOS product photo" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Photography</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Product Photography — EVOS FL</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Pop-up Banner Series for Beacon (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/e5608e9e-ab58-4636-9851-c5e6ce3a0f66/IMG-BLI-Banners-Mockup-01.jpg" alt="Beacon banners" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Pop-up Banners</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Pop-up Banner Series — Beacon</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer for Biospecific Launch (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5371b98a-d598-42ff-89a4-ef6bf522a34a/FLY-BLI-Custom-Bispecifics-Assay.jpg" alt="Biospecific launch flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Flyer — Biospecific Launch</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer for Partnership (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/2836f844-68b4-4c7f-856f-513127a3911a/fly-bli-partnership-01.jpg" alt="BLI partnership flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Flyer — Partnership</div></div>
+    </div>
+
+    <div class="card" data-cat="packaging" data-title="Packaging Design for Purigen">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/524a3f85-645e-4ce2-b0b0-5a0639b3881e/packaging-purigen-01a.jpg" alt="Purigen packaging" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Packaging</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Packaging Design — Ionic System</div></div>
+    </div>
+
+    <div class="card" data-cat="email" data-title="Email Series (CDI Labs)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/2edf6bc2-2142-4c60-9e23-36237623437d/email-cdi-samples-01a.jpg" alt="CDI Labs email" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Email Campaign</div>
+      <div class="card-info"><div class="card-cat">CDI Labs</div><div class="card-title">Email Campaign Series</div></div>
+    </div>
+
+    <div class="card" data-cat="email" data-title="Internal Newsletter Concept (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/4ec29ad3-1fc7-4df3-b32c-e2540dbc048b/email-berkeley-internal-news-01b.jpg" alt="BLI newsletter" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Newsletter</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Internal Newsletter Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Labcyte SLAS 2017">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/76c09908-c82b-43c3-b4b5-f550a7297069/ad-labcyte-slas17-01a.jpg" alt="Labcyte SLAS ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Print Ad — SLAS Conference</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Page Concept for Biomek (Labcyte)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/91c4eecb-5e9d-40bb-98f1-0b12063c2008/concept-biomek-labcyte-mockup.jpg" alt="Biomek web mockup" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Web Page Concept — Biomek</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design and Product Photography for Ionic System (Purigen)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/adcf8e74-5652-4e92-be6a-8a28ea7f6e10/brochure-purigen-01.jpg" alt="Purigen brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Brochure + Product Photography — Ionic</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for CDI Labs">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/61537a27-3386-4afd-9a52-6562b331769b/brh-cdi-huprot-01a.jpg" alt="CDI Labs brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">CDI Labs</div><div class="card-title">Brochure Design — HuProt</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for PhIP-Seq (CDI Labs)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/70e0c55b-8d3e-4644-88b1-707132ee855b/brh-cdi-virscan-01a.jpg" alt="PhIP-Seq brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">CDI Labs</div><div class="card-title">Brochure Design — PhIP-Seq / VirScan</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Booth Design for 20×20 Trade Show Booth (Labcyte)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/368c7910-14bd-4c9b-a427-1383058a4883/booth-design-labcyte-20x20.jpeg" alt="Labcyte 20x20 booth" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Trade Show</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">20×20 Trade Show Booth Design</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Booth Design for 20×20 Trade Show Booth — Labcyte (view 2)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/c0434ee0-ca3b-4370-9b0c-c9bfefa2418a/booth-design-labcyte2.jpg" alt="Labcyte booth 2" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Trade Show</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">20×20 Trade Show Booth — View 2</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Poster Design and Product Photography for Beacon Quest">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/04b5cb75-5e3f-4ee9-9da5-6619cc676eb5/poster-beacon-quest-01a.jpg" alt="Beacon Quest poster" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Poster + Photography</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Poster + Photography — Beacon Quest</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Backdrop Design Concept (NanoString)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/847ab448-dfbb-48c7-bc08-ee0e0cbe2df3/booth_panel_nanostring.jpg" alt="NanoString backdrop" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Backdrop</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">Backdrop / Panel Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Booth Design for 10×20 Trade Show Booth (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/a4ed6459-f4ee-4a9a-9d55-e08dedcc76bf/booth-bli-2022-01.jpg" alt="BLI booth" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Trade Show</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">10×20 Trade Show Booth Design</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Pop-up Banner Design for Beacon System (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/cf18c769-0bfa-4ee0-b79d-19d87a927782/BNR-BLI-Beacon-UK-02.jpg" alt="Beacon banner" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Pop-up Banner</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Pop-up Banner — Beacon System (UK)</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Digital Ad for Purigen Ionic System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/786df0bc-4cdf-450f-9db1-07395b550336/banner-purigen-ffpe-dna-rna-300x600-v01a.jpg" alt="Purigen digital ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Digital Ad</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Digital Ad — Ionic System (FFPE)</div></div>
+    </div>
+
+    <div class="card" data-cat="tradeshow" data-title="Pop-up Banners for EVOS Microscopes (AMG)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/489ec9ee-101a-4581-9d72-e6c179227047/banner_amg_evos.jpg" alt="EVOS banners" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Pop-up Banners</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Pop-up Banners — EVOS Microscopes</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design Concept for Laxco — Educational">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6d7339f5-299d-412d-800b-3e1dba83fe87/web-laxco-concept-educational-01c.jpg" alt="Laxco web educational" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Laxco</div><div class="card-title">Web Design Concept — Educational</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Labcyte — Synthetic Biology">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b6e2fc1-7e3d-4407-9ef8-7fb39466ceb2/ad-labcyte-synbio.jpg" alt="Labcyte synbio ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Print Ad — Synthetic Biology</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad Series for Labcyte — JALA">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/809465b0-2069-48f6-95ad-896ea7b2222a/ad-labcyte-jala.jpg" alt="Labcyte JALA ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad Series</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Print Ad Series — JALA Journal</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="T-Shirt Design for Beaconeer (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/c2fcc845-b872-4f36-8c1d-0c392a5015c3/shirt-beaconeer.jpg" alt="Beaconeer shirt" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brand</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">T-Shirt Design — Beaconeer</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Beacon System (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/582adf04-05fc-476a-b341-e85f95b3998f/ad-bli-abd-01.jpg" alt="Beacon system ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Print Ad — Beacon System</div></div>
+    </div>
+
+    <div class="card" data-cat="email" data-title="Social Media Content (Video) for CDI Labs">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/d5996198-3900-42da-a528-2809b78677fb/social-cdi-huprot-01.jpg" alt="CDI social content" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Social / Video</div>
+      <div class="card-info"><div class="card-cat">CDI Labs</div><div class="card-title">Social Media Content (Video) — HuProt</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Beacon Quest (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/413e2d41-312f-4126-be59-c1a5638167d2/ad-beacon-quest-01a.jpg" alt="Beacon Quest ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Print Ad — Beacon Quest</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Graphic Design for NanoString Technology">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/f2145bfc-6074-4905-a341-5016bbbe928c/fig-nanostring-how-it-works-01b.png" alt="NanoString graphic" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Graphic Design</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">Graphic Design — Technology Explainer</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer for Beacon System (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/935f8e56-327b-4795-a102-4d6ef587e2c3/ad-berkeley-lights-accelerate-science.jpg" alt="Beacon flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Flyer — Accelerate Science</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Digital Banner Ad Series for Purigen Ionic System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/70aa4cb0-eecf-48a5-8e55-3707813f6654/banner-ads-purigen-01b.png" alt="Purigen banner series" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Digital Ads</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Digital Banner Ad Series — Ionic</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI / UX for Microscope Screening System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5fb844dc-3280-41bb-b46c-04e8f54ee532/ui-prism-screening-01b.jpg" alt="Prism screening UI" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI / UX</div>
+      <div class="card-info"><div class="card-cat">Microscopy</div><div class="card-title">UI / UX — Prism Screening System</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for Elegen Enfinia">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/0cf81882-efc9-40ee-bf03-10e0b969805c/brochure-elegen-enfinia.png" alt="Elegen brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">Elegen</div><div class="card-title">Brochure Design — Enfinia</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Echo System — Precision Medicine (Labcyte)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/d5aefa97-d767-4e1f-ba96-a0f87d7fdef3/ad-labcyte-precision-medicine.jpg" alt="Echo precision medicine ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Print Ad — Precision Medicine</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI/UX and User Manual for Purigen Ionic System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/dcb09594-4531-42a6-b231-911b628ed729/ui-ionic-system-01.jpg" alt="Ionic system UI" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI/UX + Manual</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">UI/UX + User Manual — Ionic System</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="Icons Design for Echo Software Series (Labcyte)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/ed4909db-60a2-45db-b620-b2d12806fd78/icons-echo-software-suite-01b.png" alt="Echo software icons" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Icon Design</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Icons — Echo Software Suite</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design and Development for Purigen">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/df60117f-f313-4f14-b5ed-1a699263abaa/web-purigen-01.jpg" alt="Purigen website" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Web Design and Development</div></div>
+    </div>
+
+    <div class="card" data-cat="photo" data-title="Product Photography for Echo System (Labcyte)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/14e8b16f-a10d-4fa7-9376-f26dd5dcf83a/img-echo-655.png" alt="Echo product photo" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Photography</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Product Photography — Echo 655</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for AMG EVOS Microscopes">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/431a38be-c7c0-45ad-9e3f-aded2ee37cd3/brochure-evos-xl-01b.png" alt="EVOS brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Brochure Design — EVOS XL</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI Design for Elegen Order System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/0cc0ade2-0b3f-416e-a42f-703950145daf/ux-elegen-order-01a.png" alt="Elegen UI" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI Design</div>
+      <div class="card-info"><div class="card-cat">Elegen</div><div class="card-title">UI Design — Order System</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="Logo Concept for Radella">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/9f1a5f16-65af-46bf-ba00-20045d075361/logo-concept-radella-01a.jpg" alt="Radella logo" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Logo</div>
+      <div class="card-info"><div class="card-cat">Radella</div><div class="card-title">Logo Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design Concept for Shomee">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/938c8b05-758d-464a-91d0-397c0f57a2c0/web-shomee-landing-concept-01a.jpg" alt="Shomee web" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Shomee</div><div class="card-title">Web Design Concept — Landing</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure — Berkeley Lights Beacon Quest (concept)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/91e4f835-ddcf-42df-b0b6-c332e02e8a5c/fig-beacon-quest-01a.png" alt="Beacon Quest brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Brochure — Beacon Quest (Concept)</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design Concept for Laxco">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/347a7cfd-eefb-43d5-b264-6b1d70142762/web-laxco-01.jpeg" alt="Laxco web concept 2" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Laxco</div><div class="card-title">Web Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="PowerPoint Template Concept for HAVOS.ai">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/c7580d04-2726-46e7-b7ed-8dc09d07f3fa/ppt-havos-01a.png" alt="HAVOS PPT" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Presentation</div>
+      <div class="card-info"><div class="card-cat">HAVOS.ai</div><div class="card-title">PowerPoint Template Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Elegen — SUREGenes">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/89bad808-1711-4a6d-8ad6-9acd680aa4e8/Print-Ad-Elegen-SUREGenes-2301-01a.jpg" alt="Elegen print ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Elegen</div><div class="card-title">Print Ad — SUREGenes</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI / UX Design for Purigen Ionic System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5c069ff6-1477-4ee1-837a-c08ac4178e02/gui-purigen-ionic-system-01a.png" alt="Purigen Ionic GUI" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI / UX</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">UI / UX Design — Ionic System</div></div>
+    </div>
+
+    <div class="card" data-cat="web" data-title="Web Design Concept for Shomee — Alt">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/e361ae2e-58f3-4b2c-b0fc-4f461b32a561/web-shomee-landing-concept-01c.jpg" alt="Shomee web 2" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Web Concept</div>
+      <div class="card-info"><div class="card-cat">Shomee</div><div class="card-title">Web Design Concept — Alt Layout</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Labcyte Echo System — FIMM">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/67294321-d101-4258-a535-6e379860355a/ad-labcyte-fimm.jpg" alt="Labcyte FIMM ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Print Ad — Echo System (FIMM)</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Concept for HAVOS">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/18d22e82-832d-427b-bb94-33d3b8c641ae/brochure-havos-01a.png" alt="HAVOS brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">HAVOS</div><div class="card-title">Brochure Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Tip Card Design for Purigen">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/d9ba8bb6-a7aa-42c6-accb-5e4f31ea73e9/purigen-card-tips-and-tricks-01d.jpg" alt="Purigen tips card" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Tips + Tricks Card Design</div></div>
+    </div>
+
+    <div class="card" data-cat="email" data-title="Social Post — Berkeley Lights LinkedIn Datasheet">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/b280d701-1c88-4b9a-b608-243d99c5428b/Post-BLI-LinkedIn-Datasheet-CLD-1400-01a.jpg" alt="BLI LinkedIn post" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Social Post</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">LinkedIn Post — CLD-1400 Datasheet</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for Labcyte Echo Liquid Handler">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/df1e2ab9-78bb-4fdf-80b4-f7558634adb8/brochure-labcyte-echo-2019.jpg" alt="Labcyte Echo brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Brochure — Echo Liquid Handlers</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer for EVOS Microscope (AMG)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/2086dea0-df63-45a4-91db-22ab10e393e4/flyer_evos_xl.jpg" alt="EVOS flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Flyer — EVOS Microscope</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="Logo Design Concept for TCG Catering">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/ce1bd3fe-3fd9-4ffb-97f4-85eef36cda05/logo_tgc-01c.jpg" alt="TCG logo" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Logo</div>
+      <div class="card-info"><div class="card-cat">TCG Catering</div><div class="card-title">Logo Design Concept</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI / UX Design for JDSU Handheld Device">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/29c8626c-d134-450f-a920-f946e880ba11/ux-olp-jdsu.png" alt="JDSU handheld UI" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI / UX</div>
+      <div class="card-info"><div class="card-cat">JDSU</div><div class="card-title">UI / UX — Handheld Device</div></div>
+    </div>
+
+    <div class="card" data-cat="email" data-title="Email Design for Purigen Grant Program">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/40963666-5c06-4e5c-94f7-d44e2dd279dc/email-purigen-grant-01a.png" alt="Purigen grant email" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Email</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Email Design — Grant Program</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for NanoString nCounter System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/ea01a0b2-6cd5-4601-a8f2-33dbca99ff42/brochure_nanostring_ncounter.jpg" alt="NanoString nCounter brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">Brochure — nCounter System</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for NanoString nCounter Elements">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/2b35fa1d-d273-4a1d-9197-a07c90ab60b9/brochure_nanostring_elements.jpg" alt="NanoString Elements brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">Brochure — nCounter Elements</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for Labcyte Genomics Research">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/9b165fcb-c07e-4a36-aa6b-4665514e50f1/brochure-echo-genomics.jpg" alt="Labcyte genomics brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Brochure — Genomics Research</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="Logo Design for Washington Lacrosse">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/928afd43-3ae4-44db-97bd-dfad06a93f0e/logo-lake-washington-lacrosse-2011.png" alt="Lacrosse logo" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Logo</div>
+      <div class="card-info"><div class="card-cat">Lake Washington Lacrosse</div><div class="card-title">Logo Design</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for Beacon Select (Berkeley Lights) — AbD">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/8623b034-8391-48a0-b2c9-0aa6b3583d9c/AD-BLI-Beacon-Select-2301.jpg" alt="Beacon Select AbD ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Print Ad — Beacon Select (AbD)</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad for EVOS fl Microscope (AMG)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/ef5874cd-1ea5-4377-b470-9e28f676c164/ad-amg-evos-fl-01a.jpg" alt="EVOS fl print ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Print Ad — EVOS fl Microscope</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for EVOS (AMG)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/2cec3797-e16e-4f46-8bcd-0763bf95d471/brochure_amg_evosB.png" alt="EVOS AMG brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Brochure Design — EVOS</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer for Purigen ABRF 2022">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/1752d084-36b6-4e29-ae89-4075f4ccb3c6/FLY-Purigen-ABRF-2022.jpg" alt="Purigen ABRF flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Flyer — ABRF 2022 Conference</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Brochure Design for Dropworks">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/e03a67aa-6015-4aec-9893-c2339d3123d2/brochure-dropworks-01a.jpg" alt="Dropworks brochure" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brochure</div>
+      <div class="card-info"><div class="card-cat">Dropworks</div><div class="card-title">Brochure Design</div></div>
+    </div>
+
+    <div class="card" data-cat="brand" data-title="Calendar Design for NanoString">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/58a15da1-582f-44d4-af14-0e4c061dc899/calendar_nanostring.jpg" alt="NanoString calendar" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Brand / Print</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">Calendar Design</div></div>
+    </div>
+
+    <div class="card" data-cat="brochure" data-title="Product Catalog for Berkeley Lights">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/a421f371-435d-462c-9d94-ee3eb32982b9/catalog-beacon-berkeley-lights-01a.jpg" alt="Berkeley Lights catalog" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Product Catalog</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Product Catalog — Beacon Systems</div></div>
+    </div>
+
+    <div class="card" data-cat="email" data-title="Email Design and Campaign for Personalis">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/684380c6-f5d7-4926-b795-67a3db442070/email_personalis_cancer_panel.jpg" alt="Personalis email" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Email Campaign</div>
+      <div class="card-info"><div class="card-cat">Personalis</div><div class="card-title">Email Design — Cancer Panel Campaign</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Banner Ads Series for NanoString">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/166f4218-fdff-4d21-89e5-99c0dcd77e8f/etoc_nanostring_series.jpg" alt="NanoString banner ads" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Digital Ads</div>
+      <div class="card-info"><div class="card-cat">NanoString</div><div class="card-title">Digital Banner Ad Series</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UI / UX Design for EVOS Microscopes — Screens">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/daf8750d-142b-4197-b663-fbe5c6701a3c/EVOS_fl_screens_05.jpg" alt="EVOS screens" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UI / UX</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">UI / UX — EVOS FL Screens</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer Design for BLI University (Berkeley Lights)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/dc6ade24-40f3-41e5-a726-22b1a1199905/FLY-BLI-University-Recruiting-01f-1.png" alt="BLI University flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">Berkeley Lights</div><div class="card-title">Flyer — BLI University Recruiting</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Print Ad Design and Product Photography for EVOS fl Microscope">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/0d9fd40d-f57a-4b26-9b2e-043847679514/ad_evos_fl_biotech_1103.jpg" alt="EVOS fl print ad" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Print Ad + Photography</div>
+      <div class="card-info"><div class="card-cat">AMG</div><div class="card-title">Print Ad + Photography — EVOS fl</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Flyer for Purigen Webinar">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/4cfd6c85-ac57-4fa2-bc85-de66bb0b9bf3/flyer-purigen-webinar-01a.png" alt="Purigen webinar flyer" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Flyer</div>
+      <div class="card-info"><div class="card-cat">Purigen Biosystems</div><div class="card-title">Flyer — Webinar Series</div></div>
+    </div>
+
+    <div class="card" data-cat="uiux" data-title="UX Design for Elegen Order System">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/df4f9534-5ab0-4852-b92f-a48d44761b85/ux-elegen-order-01.png" alt="Elegen UX" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">UX Design</div>
+      <div class="card-info"><div class="card-cat">Elegen</div><div class="card-title">UX Design — Order Flow</div></div>
+    </div>
+
+    <div class="card" data-cat="print" data-title="Infographic — Echo Sequencing (Labcyte)">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/8683fd3d-702e-46e1-bf02-c6ca5976f1b4/info-echo-sequencing.jpg" alt="Echo sequencing infographic" loading="lazy">
+      <div class="card-overlay"></div><div class="card-tag">Infographic</div>
+      <div class="card-info"><div class="card-cat">Labcyte</div><div class="card-title">Infographic — Echo Sequencing Workflow</div></div>
+    </div>
+
+  </div><!-- /masonry -->
+</div><!-- /grid-wrap -->
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="reveal">
+    <p style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.35);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem"><span style="display:block;width:1.5rem;height:1px;background:currentColor"></span>Open to Opportunities</p>
+    <h2 class="cs-title">Ready for the <em>Next Level?</em></h2>
+    <p class="cs-body">Currently exploring new marketing leadership roles. Let's discuss how bold creative and smart analytics can drive measurable results for your organization.</p>
+    <a href="mailto:paul@paulmoon.com" class="btn-primary">Send a Message ↗</a>
+  </div>
+  <div class="cs-links reveal reveal-delay-1">
+    <div class="cs-link-row"><span class="cs-link-label">Email</span><a href="mailto:paul@paulmoon.com" class="cs-link-val">paul@paulmoon.com</a></div>
+    <div class="cs-link-row"><span class="cs-link-label">Phone</span><a href="tel:9492922925" class="cs-link-val">(949) 292-2925</a></div>
+    <div class="cs-link-row"><span class="cs-link-label">LinkedIn</span><a href="https://www.linkedin.com/in/paultmoon/" target="_blank" class="cs-link-val">linkedin.com/in/paultmoon</a></div>
+    <div class="cs-link-row"><span class="cs-link-label">Resume</span><a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" class="cs-link-val">Download PDF ↗</a></div>
+    <div class="cs-link-row"><span class="cs-link-label">Letters</span><a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" class="cs-link-val">Recommendation Letters ↗</a></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo"><img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=300w" alt="Paul Moon"></a>
+  <span class="footer-copy">© 2026 Paul Moon · All Rights Reserved</span>
+  <ul class="footer-links">
+    <li><a href="index.html#philosophy-section">About</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="index.html#results-section">Results</a></li>
+    <li><a href="index.html#contact-section">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+// LOADER
+window.addEventListener('load',()=>{ setTimeout(()=>document.getElementById('loader').classList.add('done'),1500); });
+
+// CURSOR
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function anim(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(anim); })();
+
+// NAV SCROLL
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+// FILTER BAR STUCK
+const fb=document.getElementById('filter-bar');
+window.addEventListener('scroll',()=>fb.classList.toggle('stuck',window.scrollY>300),{passive:true});
+
+// BUILD ITEMS INDEX for lightbox
+const allCards=[...document.querySelectorAll('.card[data-title]')];
+let lbIndex=0;
+
+function openLightbox(idx){
+  lbIndex=idx;
+  const c=allCards[idx];
+  const img=c.querySelector('img');
+  document.getElementById('lb-img').src=img.src.replace('format=300w','format=1500w');
+  document.getElementById('lb-img').alt=img.alt;
+  document.getElementById('lb-caption').textContent=c.dataset.title||'';
+  document.getElementById('lb-counter').textContent=(idx+1)+' / '+allCards.length;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+
+allCards.forEach((card,i)=>{
+  card.addEventListener('click',()=>openLightbox(i));
+});
+document.getElementById('lb-close').addEventListener('click',closeLightbox);
+document.getElementById('lb-prev').addEventListener('click',()=>openLightbox((lbIndex-1+allCards.length)%allCards.length));
+document.getElementById('lb-next').addEventListener('click',()=>openLightbox((lbIndex+1)%allCards.length));
+document.getElementById('lightbox').addEventListener('click',e=>{ if(e.target===document.getElementById('lightbox')) closeLightbox(); });
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowRight') openLightbox((lbIndex+1)%allCards.length);
+  if(e.key==='ArrowLeft') openLightbox((lbIndex-1+allCards.length)%allCards.length);
+});
+
+// FILTER
+const filterBtns=document.querySelectorAll('.fb');
+const countEl=document.getElementById('filter-count');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    let visible=0;
+    // filter featured row
+    document.querySelectorAll('.featured-row .card').forEach(c=>{
+      const show=f==='all'||c.dataset.cat===f;
+      c.style.display=show?'':'none'; if(show) visible++;
+    });
+    // show/hide featured row if no matches
+    const fr=document.querySelector('.featured-row');
+    if(fr){ const anyVis=[...fr.querySelectorAll('.card')].some(c=>c.style.display!=='none'); fr.style.display=anyVis?'':'none'; }
+    // masonry
+    document.querySelectorAll('.masonry .card').forEach(c=>{
+      const show=f==='all'||c.dataset.cat===f;
+      c.style.display=show?'':'none'; if(show) visible++;
+    });
+    countEl.textContent=visible+' project'+(visible!==1?'s':'');
+  });
+});
+
+// REVEAL
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// MAGNETIC buttons
+document.querySelectorAll('.btn-primary').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{ const r=btn.getBoundingClientRect(); btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.2}px)`; });
+  btn.addEventListener('mouseleave',()=>btn.style.transform='');
+});
+</script>
+</body>
+</html>

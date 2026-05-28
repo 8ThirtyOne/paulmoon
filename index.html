@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Moon — 360° Creative Marketing Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F0E8;--ink:#0E0E0C;--mid:#5A5A52;
+  --accent:#C8502A;--accent2:#E8733A;--accent-soft:#F0E4DC;
+  --gold:#B8953A;--border:rgba(14,14,12,0.11);
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'DM Mono',monospace;--sans:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
+
+/* ── CUSTOM CURSOR ── */
+#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.08s,width 0.25s,height 0.25s,background 0.25s,opacity 0.2s;mix-blend-mode:multiply}
+#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid rgba(200,80,42,0.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease-out,width 0.3s,height 0.3s,border-color 0.3s,opacity 0.2s}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:6px;height:6px}
+body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:60px;height:60px;border-color:rgba(200,80,42,0.6)}
+
+/* ── PAGE LOADER ── */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:10000;display:flex;align-items:center;justify-content:center;transition:opacity 0.6s ease,visibility 0.6s ease}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-inner{text-align:center}
+.loader-logo{font-family:var(--serif);font-size:3rem;color:var(--cream);line-height:1;margin-bottom:1rem;opacity:0;animation:loaderFade 0.5s 0.2s forwards}
+.loader-bar-wrap{width:200px;height:1px;background:rgba(255,255,255,0.1);margin:0 auto;overflow:hidden}
+.loader-bar{height:100%;width:0;background:var(--accent);animation:loaderBar 1.4s cubic-bezier(0.4,0,0.2,1) forwards}
+@keyframes loaderFade{to{opacity:1}}
+@keyframes loaderBar{0%{width:0}60%{width:70%}100%{width:100%}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(245,240,232,0);backdrop-filter:blur(0px);border-bottom:0.5px solid transparent;transition:all 0.4s ease}
+nav.scrolled{background:rgba(245,240,232,0.95);backdrop-filter:blur(20px);border-bottom-color:var(--border);padding:0.8rem 3rem}
+.nav-logo img{height:30px;display:block;opacity:0;transition:opacity 0.4s}
+nav.scrolled .nav-logo img{opacity:1}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;font-weight:600;transition:color 0.2s;position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-right{display:flex;gap:1rem;align-items:center}
+.nav-linkedin{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;color:var(--mid);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.nav-linkedin:hover{color:var(--ink)}
+.nav-cta{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);background:var(--ink);text-decoration:none;padding:0.6rem 1.4rem;transition:background 0.25s,transform 0.15s;display:inline-block}
+.nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative}
+.hero-left{padding:9rem 4rem 5rem 3rem;display:flex;flex-direction:column;justify-content:center;border-right:0.5px solid var(--border);position:relative;overflow:hidden}
+.hero-noise{position:absolute;inset:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");pointer-events:none}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.8rem;display:flex;align-items:center;gap:0.8rem;opacity:0;transform:translateY(12px);animation:fadeUp 0.7s 1.6s forwards}
+.hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--accent);display:block}
+h1.hero-title{font-family:var(--serif);font-size:clamp(3.2rem,5.2vw,6.5rem);line-height:1.0;letter-spacing:-0.01em;color:var(--ink);margin-bottom:1.2rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.8s 1.7s forwards}
+h1.hero-title em{font-style:italic;color:var(--accent)}
+.hero-sub-head{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-bottom:1.5rem;opacity:0;transform:translateY(16px);animation:fadeUp 0.7s 1.85s forwards}
+.hero-body{font-size:15px;color:var(--mid);max-width:50ch;line-height:1.8;margin-bottom:2.8rem;opacity:0;transform:translateY(16px);animation:fadeUp 0.7s 1.95s forwards}
+.hero-body strong{color:var(--ink)}
+.hero-actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;opacity:0;transform:translateY(16px);animation:fadeUp 0.7s 2.1s forwards}
+.hero-scroll-hint{position:absolute;bottom:2.5rem;left:3rem;font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:0.7rem;opacity:0;animation:fadeUp 0.6s 2.5s forwards}
+.hero-scroll-hint::before{content:'';display:block;width:1px;height:40px;background:var(--mid);animation:scrollLine 2s 3s infinite}
+@keyframes scrollLine{0%,100%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(0.4);transform-origin:top}}
+
+.hero-right{position:relative;overflow:hidden;background:var(--ink)}
+.hero-img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;filter:grayscale(0.2);animation:heroImgIn 1s 1.4s cubic-bezier(0.4,0,0.2,1) forwards;transform:scale(1.05);transform-origin:center}
+@keyframes heroImgIn{to{opacity:0.8;transform:scale(1)}}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,14,12,0.6) 0%,rgba(14,14,12,0.1) 70%)}
+.hero-badge{position:absolute;bottom:2.5rem;right:2.5rem;background:rgba(245,240,232,0.06);border:0.5px solid rgba(245,240,232,0.12);padding:1.2rem 1.4rem;backdrop-filter:blur(12px);opacity:0;animation:fadeUp 0.6s 2.2s forwards}
+.hero-badge-label{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-bottom:0.6rem}
+.hero-badge-awards{display:flex;flex-wrap:wrap;gap:0.35rem}
+.award-chip{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,240,232,0.55);border:0.5px solid rgba(245,240,232,0.12);padding:0.2rem 0.5rem;transition:color 0.2s,border-color 0.2s}
+.award-chip:hover{color:var(--cream);border-color:rgba(245,240,232,0.4)}
+
+/* ── TICKER ── */
+.ticker{overflow:hidden;padding:1rem 0;background:var(--accent);position:relative}
+.ticker-inner{display:flex;width:max-content;animation:ticker 28s linear infinite}
+.ticker-item{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.88);padding:0 2.5rem;white-space:nowrap;display:flex;align-items:center;gap:1.5rem}
+.ticker-item::after{content:'◆';font-size:7px;opacity:0.45}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── BUTTONS ── */
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--ink);color:var(--cream);font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;padding:0.95rem 2rem;transition:background 0.25s,transform 0.15s;position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;inset:0;background:var(--accent);transform:translateX(-101%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1)}
+.btn-primary:hover::after{transform:translateX(0)}
+.btn-primary span{position:relative;z-index:1}
+.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--ink);font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;padding:0.95rem 2rem;border:1px solid var(--ink);transition:background 0.25s,color 0.25s}
+.btn-outline:hover{background:var(--ink);color:var(--cream)}
+.btn-ghost{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;position:relative;padding-bottom:2px}
+.btn-ghost::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--ink);transition:width 0.3s}
+.btn-ghost:hover{color:var(--ink)}
+.btn-ghost:hover::after{width:100%}
+
+/* ── SECTION COMMON ── */
+.section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.7rem}
+.section-label::before{content:'';width:1.8rem;height:1px;background:currentColor;flex-shrink:0}
+.section-label.light{color:rgba(245,240,232,0.4)}
+h2.section-title{font-family:var(--serif);font-size:clamp(2.2rem,3.5vw,4rem);line-height:1.05;letter-spacing:-0.01em;color:var(--ink);margin-bottom:1.5rem;font-weight:normal}
+h2.section-title em{font-style:italic;color:var(--accent)}
+h2.section-title.light{color:var(--cream)}
+h2.section-title.light em{color:#d47a5a}
+
+/* ── PHILOSOPHY ── */
+.philosophy{display:grid;grid-template-columns:1fr 1fr;border-top:0.5px solid var(--border)}
+.philosophy-text{padding:7rem 4rem 7rem 3rem;border-right:0.5px solid var(--border)}
+.philosophy-text .sub-head{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:2rem}
+.philosophy-text p{font-size:15px;color:var(--mid);line-height:1.85;margin-bottom:1.4rem;max-width:52ch}
+.philosophy-text p strong{color:var(--ink);font-weight:600}
+.philosophy-text .cta-row{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.pillars{padding:7rem 3rem;display:flex;flex-direction:column}
+.pillar{padding:2.2rem 0;border-bottom:0.5px solid var(--border);display:grid;grid-template-columns:52px 1fr 200px;gap:1.5rem;align-items:start;transition:background 0.25s;margin:0 -3rem;padding-left:3rem;padding-right:3rem}
+.pillar:first-child{border-top:0.5px solid var(--border)}
+.pillar:hover{background:rgba(200,80,42,0.03)}
+.pillar-num{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--accent);padding-top:0.3rem}
+.pillar-text h3{font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:0.5rem;font-weight:normal;line-height:1.2}
+.pillar-text p{font-size:13px;color:var(--mid);line-height:1.7}
+.pillar-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(0.6) brightness(0.95);transition:filter 0.5s,transform 0.5s;transform-origin:center}
+.pillar:hover .pillar-img{filter:saturate(1) brightness(1);transform:scale(1.03)}
+
+/* ── EXPERTISE ── */
+.expertise-section{background:var(--ink);padding:7rem 3rem}
+.expertise-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:4rem;align-items:end}
+.expertise-intro .section-body{font-size:15px;color:rgba(245,240,232,0.5);line-height:1.8}
+.expertise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05)}
+.exp-item{background:var(--ink);padding:2.5rem;transition:background 0.3s;position:relative;overflow:hidden}
+.exp-item::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+.exp-item:hover{background:#131310}
+.exp-item:hover::before{transform:scaleX(1)}
+.exp-icon{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.2);margin-bottom:1.2rem}
+.exp-title{font-family:var(--serif);font-size:1.4rem;color:var(--cream);margin-bottom:0.8rem;line-height:1.2;font-weight:normal}
+.exp-bullets{list-style:none;padding:0}
+.exp-bullets li{font-size:12px;color:rgba(245,240,232,0.4);line-height:1.65;margin-bottom:0.3rem;padding-left:1rem;position:relative;transition:color 0.2s}
+.exp-bullets li::before{content:'—';position:absolute;left:0;color:rgba(200,80,42,0.5)}
+.exp-item:hover .exp-bullets li{color:rgba(245,240,232,0.55)}
+.exp-tech{font-family:var(--mono);font-size:10px;letter-spacing:0.07em;color:rgba(245,240,232,0.2);margin-top:1rem;line-height:1.7;transition:color 0.3s}
+.exp-item:hover .exp-tech{color:rgba(245,240,232,0.35)}
+
+/* ── HISTORY ── */
+.history-section{padding:7rem 3rem;border-top:0.5px solid var(--border)}
+.history-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:3rem;align-items:end}
+.history-logos{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin-bottom:3rem;padding-bottom:2rem;border-bottom:0.5px solid var(--border)}
+.history-logos img{height:26px;width:auto;object-fit:contain;filter:grayscale(1);opacity:0.45;transition:opacity 0.3s,filter 0.3s}
+.history-logos img:hover{opacity:1;filter:grayscale(0)}
+.history-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border)}
+.history-item{background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1.2rem;transition:background 0.25s,transform 0.25s;cursor:default;position:relative;overflow:hidden}
+.history-item::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+.history-item:hover{background:#EDE9D8}
+.history-item:hover::after{transform:scaleY(1)}
+.h-company{font-family:var(--serif);font-size:1.7rem;color:var(--ink);line-height:1.1;font-weight:normal}
+.h-role{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid)}
+.h-results{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:auto}
+.h-result-num{font-family:var(--serif);font-size:2rem;color:var(--accent);line-height:1}
+.h-result-label{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid)}
+.h-tags{display:flex;flex-wrap:wrap;gap:0.3rem}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);border:0.5px solid var(--border);padding:0.2rem 0.55rem}
+
+/* ── PORTFOLIO ── */
+.portfolio-section{padding:7rem 3rem;border-top:0.5px solid var(--border)}
+.portfolio-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem}
+.portfolio-filter{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.8rem}
+.filter-btn{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);background:transparent;border:0.5px solid var(--border);padding:0.35rem 0.9rem;cursor:none;transition:background 0.2s,color 0.2s,border-color 0.2s}
+.filter-btn:hover,.filter-btn.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border)}
+.port-card{background:var(--cream);overflow:hidden;transition:background 0.3s;position:relative}
+.port-card--wide{grid-column:span 2}
+.port-card:hover{background:#EDE9D8}
+.port-img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;background:#d4d0c8}
+.port-card--wide .port-img-wrap{aspect-ratio:2.2/1}
+.port-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1),filter 0.5s;filter:saturate(0.65)}
+.port-card:hover .port-img{transform:scale(1.06);filter:saturate(1)}
+.port-body{padding:1.8rem}
+.port-cat{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem}
+.port-title{font-family:var(--serif);font-size:1.2rem;color:var(--ink);margin-bottom:0.4rem;line-height:1.2;font-weight:normal}
+.port-desc{font-size:12px;color:var(--mid);line-height:1.6}
+.portfolio-more{text-align:center;margin-top:2.5rem}
+.port-empty{background:var(--ink);display:flex;align-items:center;justify-content:center}
+.port-empty-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.2)}
+
+/* ── AWARDS ── */
+.awards-section{background:var(--ink);padding:5rem 3rem}
+.awards-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.04);margin-top:3rem}
+.award-item{background:var(--ink);padding:2.5rem 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem;transition:background 0.3s;text-decoration:none}
+.award-item:hover{background:#161612}
+.award-item img{width:100%;max-width:100px;height:52px;object-fit:contain;filter:grayscale(1) brightness(0.55);transition:filter 0.35s}
+.award-item:hover img{filter:grayscale(0) brightness(1)}
+.award-name{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.25);text-align:center;transition:color 0.3s}
+.award-item:hover .award-name{color:rgba(245,240,232,0.5)}
+.award-text{font-family:var(--serif);font-size:1.6rem;color:rgba(245,240,232,0.4);text-align:center;line-height:1.1;transition:color 0.3s}
+.award-item:hover .award-text{color:rgba(245,240,232,0.75)}
+
+/* ── RESULTS ── */
+.results-section{padding:7rem 3rem;border-top:0.5px solid var(--border)}
+.results-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--border);margin:3rem 0 0;overflow-x:auto;scrollbar-width:none}
+.results-tabs::-webkit-scrollbar{display:none}
+.results-tab{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);padding:0.9rem 1.6rem;cursor:none;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color 0.2s,border-color 0.2s}
+.results-tab:hover{color:var(--ink)}
+.results-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.results-panel{display:none;padding:3rem 0}
+.results-panel.active{display:block}
+.results-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border);margin-bottom:2rem}
+.result-stat{background:var(--cream);padding:2rem;transition:background 0.25s;cursor:default}
+.result-stat:hover{background:#EDE9D8}
+.result-num{font-family:var(--serif);font-size:2.8rem;color:var(--accent);line-height:1;margin-bottom:0.4rem}
+.result-label{font-family:var(--mono);font-size:9px;letter-spacing:0.13em;text-transform:uppercase;color:var(--mid)}
+.result-links{display:flex;gap:1rem;flex-wrap:wrap}
+.result-link{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:0.5px solid rgba(200,80,42,0.25);padding-bottom:1px;transition:border-color 0.2s}
+.result-link:hover{border-color:var(--accent)}
+
+/* ── ABOUT ── */
+.about-section{padding:7rem 3rem;border-top:0.5px solid var(--border);background:var(--accent-soft)}
+.about-grid{display:grid;grid-template-columns:280px 1fr;gap:5rem;align-items:start}
+.about-photo{position:sticky;top:7rem}
+.about-photo img{width:100%;display:block;filter:grayscale(0.1);transition:filter 0.5s}
+.about-photo:hover img{filter:grayscale(0)}
+.photo-caption{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-top:0.8rem}
+.about-content .lead{font-size:17px;color:var(--ink);line-height:1.8;margin-bottom:2rem;max-width:60ch}
+.skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2rem}
+.skill-group{padding:1.6rem 0;border-top:0.5px solid rgba(200,80,42,0.15)}
+.skill-group-title{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-bottom:0.7rem}
+.skill-group ul{list-style:none;padding:0}
+.skill-group li{font-size:13px;color:var(--mid);line-height:1.65;padding-left:1rem;position:relative;margin-bottom:0.2rem}
+.skill-group li::before{content:'—';position:absolute;left:0;color:rgba(200,80,42,0.45);font-size:11px}
+.tech-stack{margin-top:2rem;padding-top:1.5rem;border-top:0.5px solid rgba(200,80,42,0.15)}
+.tech-stack-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:0.6rem}
+.tech-stack-text{font-size:13px;color:var(--mid);line-height:1.7}
+
+/* ── MARQUEE TESTIMONIALS ── */
+.testimonials{padding:6rem 0;border-top:0.5px solid var(--border);overflow:hidden;background:var(--cream)}
+.testimonials-header{padding:0 3rem 3rem;display:flex;justify-content:space-between;align-items:flex-end}
+.test-track{overflow:hidden}
+.test-inner{display:flex;gap:1.5rem;width:max-content;animation:testScroll 34s linear infinite}
+.test-inner:hover{animation-play-state:paused}
+.test-card{background:white;border:0.5px solid var(--border);padding:2.5rem;width:380px;flex-shrink:0;display:flex;flex-direction:column;gap:1.5rem;transition:border-color 0.3s,transform 0.3s}
+.test-card:hover{border-color:rgba(200,80,42,0.3);transform:translateY(-3px)}
+.test-quote{font-family:var(--serif);font-size:1.05rem;line-height:1.75;color:var(--ink);font-style:italic}
+.test-attr{display:flex;align-items:center;gap:0.8rem;margin-top:auto}
+.test-initials{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);border:1px solid rgba(200,80,42,0.18);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;letter-spacing:0.05em;color:var(--accent);flex-shrink:0}
+.test-name{font-size:13px;font-weight:600;color:var(--ink)}
+.test-co{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid)}
+@keyframes testScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── CTA ── */
+.cta-section{background:var(--ink);padding:7rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.cta-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,4.5rem);color:var(--cream);line-height:1.05;margin-bottom:1.2rem;font-weight:normal}
+.cta-title em{font-style:italic;color:#d47a5a}
+.cta-body{font-size:15px;color:rgba(245,240,232,0.55);line-height:1.8;margin-bottom:2.5rem;max-width:46ch}
+.cta-img-wrap{width:100%;aspect-ratio:4/3;overflow:hidden;margin-bottom:2rem}
+.cta-img{width:100%;height:100%;object-fit:cover;opacity:0.4;filter:grayscale(0.4);transition:opacity 0.5s,filter 0.5s}
+.cta-img-wrap:hover .cta-img{opacity:0.6;filter:grayscale(0)}
+.cta-contact{display:flex;flex-direction:column;gap:0}
+.contact-row{display:flex;align-items:baseline;gap:1rem;padding:1.1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06);transition:background 0.2s}
+.contact-row:last-child{border-bottom:none}
+.contact-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.25);min-width:72px}
+.contact-value{font-size:16px;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(245,240,232,0.12);padding-bottom:1px;transition:border-color 0.25s,color 0.25s}
+.contact-value:hover{border-color:rgba(245,240,232,0.55);color:rgba(245,240,232,0.85)}
+
+/* ── FOOTER ── */
+footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid rgba(255,255,255,0.04)}
+.footer-logo img{height:22px;filter:brightness(0.4);transition:filter 0.3s}
+.footer-logo:hover img{filter:brightness(0.7)}
+.footer-copy{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.18)}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.22);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:rgba(245,240,232,0.55)}
+
+/* ── ANIMATED COUNTER ── */
+.count-up{display:inline-block}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
+.reveal-right.visible{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(0.95);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
+.reveal-scale.visible{opacity:1;transform:none}
+
+/* ── PROGRESS BAR SECTION ── */
+.progress-section{background:var(--ink);padding:6rem 3rem;border-top:1px solid rgba(255,255,255,0.04)}
+.progress-grid{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start}
+.progress-bars{display:flex;flex-direction:column;gap:2.2rem}
+.prog-row{display:flex;align-items:center;gap:1.5rem}
+.prog-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.4);min-width:200px}
+.prog-track{flex:1;height:1px;background:rgba(255,255,255,0.06);position:relative;overflow:visible}
+.prog-fill{height:100%;width:0;background:var(--accent);transition:width 1.6s cubic-bezier(0.4,0,0.2,1);position:relative}
+.prog-fill::after{content:'';position:absolute;right:-4px;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--accent);opacity:0;transition:opacity 0.3s 1.5s}
+.prog-fill.done::after{opacity:1}
+.prog-val{font-family:var(--serif);font-size:1.6rem;color:var(--cream);min-width:4rem;text-align:right}
+
+@keyframes fadeUp{to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">PM</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=300w" alt="Paul Moon">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#philosophy-section">About</a></li>
+    <li><a href="#expertise-section">Expertise</a></li>
+    <li><a href="#portfolio-section">Portfolio</a></li>
+    <li><a href="#results-section">Results</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.linkedin.com/in/paultmoon/" target="_blank" class="nav-linkedin">LinkedIn ↗</a>
+    <a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" class="nav-cta">View Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-noise"></div>
+    <p class="hero-eyebrow">Award-Winning Creative</p>
+    <h1 class="hero-title">Brand Marketing<br>+ <em>Creative Design</em><br>Leader</h1>
+    <p class="hero-sub-head">Specializing in Biotech and Healthcare Industries</p>
+    <p class="hero-body">Delivering End-to-End Brand Development + Downstream Marketing with <strong>BOLD Creative</strong> and Smart Analytics</p>
+    <div class="hero-actions">
+      <a href="#portfolio-section" class="btn-primary"><span>View Portfolio ↗</span></a>
+      <a href="#philosophy-section" class="btn-outline">About Paul</a>
+      <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" class="btn-ghost">Recommendation Letters →</a>
+    </div>
+    <div class="hero-scroll-hint">Scroll to explore</div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5164b8fd-3a9d-4298-8871-d76f720e39fb/hero-main-collage-05c.jpg" alt="Paul Moon portfolio collage">
+    <div class="hero-img-overlay"></div>
+    <div class="hero-badge">
+      <div class="hero-badge-label">Industry Awards</div>
+      <div class="hero-badge-awards">
+        <span class="award-chip">Hermes Creative</span>
+        <span class="award-chip">MUSE</span>
+        <span class="award-chip">WebAward</span>
+        <span class="award-chip">IAC</span>
+        <span class="award-chip">Horizon Interactive</span>
+        <span class="award-chip">MARCOM</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Brand Strategy</span><span class="ticker-item">Creative Direction</span><span class="ticker-item">Biotech Marketing</span><span class="ticker-item">UI/UX Design</span><span class="ticker-item">Digital Campaigns</span><span class="ticker-item">Product Photography</span><span class="ticker-item">Data-Driven ROI</span><span class="ticker-item">Trade Show Design</span><span class="ticker-item">Web Development</span><span class="ticker-item">Marketing Operations</span><span class="ticker-item">Brand Strategy</span><span class="ticker-item">Creative Direction</span><span class="ticker-item">Biotech Marketing</span><span class="ticker-item">UI/UX Design</span><span class="ticker-item">Digital Campaigns</span><span class="ticker-item">Product Photography</span><span class="ticker-item">Data-Driven ROI</span><span class="ticker-item">Trade Show Design</span><span class="ticker-item">Web Development</span><span class="ticker-item">Marketing Operations</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<div class="philosophy" id="philosophy-section">
+  <div class="philosophy-text reveal-left">
+    <p class="section-label">360° Downstream Marketing Leader</p>
+    <h2 class="section-title">Elevating Brands Through <em>Creative Design,</em> Cohesive Strategy &amp; Rigorous Execution</h2>
+    <p class="sub-head">Delivering End-to-End Brand Development and Growth with Bold Creative and Smart Analytics</p>
+    <p><strong>I design, build and manage marketing ecosystems that are as strategically sound as they are creatively compelling.</strong> My focus is on crafting infrastructures that not only look impactful but also perform — driving measurable ROI through integrated, insight-driven brand and marketing communications.</p>
+    <p><strong>With a blend of creative vision and operational rigor, I ensure every program is aligned, scalable, and built to deliver remarkable results.</strong></p>
+    <p><strong>I also bring cross-functional leadership, guiding teams across marketing, creative, and operations to work seamlessly toward shared goals.</strong> My leadership style emphasizes clarity, accountability, and collaboration, enabling diverse stakeholders to align on strategy and execute with impact.</p>
+    <p><strong>One key benefit that organizations gain from having an all-in-one marketing leader is seamless alignment of brand strategy, creative direction, and marketing operations</strong> — ensuring a strong, unified brand presence that maximizes ROI and resource allocation.</p>
+    <div class="cta-row">
+      <a href="https://paulmoon.com/about" class="btn-primary"><span>Full About Page ↗</span></a>
+      <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" class="btn-ghost">Recommendation Letters →</a>
+    </div>
+  </div>
+  <div class="pillars reveal-right">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-text">
+        <h3>Unified Brand Strategy and Vision</h3>
+        <p>Bridging strategic brand development with execution, ensuring every marketing initiative reflects a consistent narrative — keeping vision, values, and positioning clear across all channels.</p>
+      </div>
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/1e20ca3f-44c8-4ec1-8468-d0b84f934700/brochure-labcyte-echo-2019.jpg" alt="Labcyte Echo brochure">
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-text">
+        <h3>Integrated Creative Direction and Execution</h3>
+        <p>Design, storytelling, and content working together to amplify the brand's message — fostering innovation without losing sight of business objectives or audience relevance.</p>
+      </div>
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/aead7e18-5766-4678-be32-3a710549a057/web-labcyte-products-01a.png" alt="Labcyte website">
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-text">
+        <h3>Streamlined Marketing Operations</h3>
+        <p>Systems and frameworks that optimize workflow, enhance collaboration, and increase speed-to-market — translating strategy and creativity into efficient, scalable execution.</p>
+      </div>
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6e0e0f04-9e43-43d2-9bf6-53451342fe7f/booth-design-labcyte2.jpg" alt="Trade show booth">
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-text">
+        <h3>Performance and ROI Optimization</h3>
+        <p>Every effort measurable and strategically aligned — resulting in a unified brand presence that drives engagement, maximizes ROI, and makes smarter use of resources.</p>
+      </div>
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/7fadbff4-3c8e-4876-bc04-9127cb7ebb98/img-results-metrics-labcyte-01a.jpg" alt="Results metrics">
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<div class="expertise-section" id="expertise-section">
+  <div class="expertise-intro">
+    <div class="reveal">
+      <p class="section-label light">Areas of Expertise</p>
+      <h2 class="section-title light">What I <em>Bring</em> to Every Role</h2>
+    </div>
+    <p class="section-body reveal reveal-delay-2">Bridging Creative Vision, Strategic Insight, and Operational Excellence — an All-in-One Hands-on Marketing Leader Seamlessly Connecting Strategy, Execution, Operations, and Performance.</p>
+  </div>
+  <div class="expertise-grid">
+    <div class="exp-item reveal">
+      <div class="exp-icon">01 / Brand</div>
+      <div class="exp-title">Creative Brand &amp; Design</div>
+      <ul class="exp-bullets">
+        <li>Creating bold, memorable brands that instantly captivate audiences</li>
+        <li>Digital-first design thinking with aesthetic sophistication</li>
+        <li>Typography, color theory, and visual hierarchy mastery</li>
+        <li>Motion design integration and multimedia content creation</li>
+      </ul>
+    </div>
+    <div class="exp-item reveal reveal-delay-1">
+      <div class="exp-icon">02 / Strategy</div>
+      <div class="exp-title">Brand Strategy &amp; Management</div>
+      <ul class="exp-bullets">
+        <li>Building and sustaining brand identity and equity in competitive markets</li>
+        <li>Visual storytelling and brand narrative development</li>
+        <li>Creative system architecture and brand consistency enforcement</li>
+        <li>Stakeholder alignment and creative vision communication</li>
+      </ul>
+    </div>
+    <div class="exp-item reveal reveal-delay-2">
+      <div class="exp-icon">03 / Digital</div>
+      <div class="exp-title">ROI-driven Digital Marketing</div>
+      <ul class="exp-bullets">
+        <li>Data-first approach to digital strategy and brand-building</li>
+        <li>Integrated campaigns: web, email, paid search, social, display</li>
+        <li>SEO/SEM strategies that improve rankings and qualified traffic</li>
+        <li>Smart analytics interpretation and performance reporting</li>
+      </ul>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-icon">04 / Operations</div>
+      <div class="exp-title">Marketing Operations &amp; ROI</div>
+      <ul class="exp-bullets">
+        <li>Data-driven oversight of operations, budgets, and metrics</li>
+        <li>Multi-channel campaign orchestration (digital, social, events, PR)</li>
+        <li>Rigorous demand generation and lead nurturing programs</li>
+        <li>KPI tracking, dashboard development, leadership reporting</li>
+      </ul>
+    </div>
+    <div class="exp-item reveal reveal-delay-1">
+      <div class="exp-icon">05 / Leadership</div>
+      <div class="exp-title">Leadership &amp; Vision</div>
+      <ul class="exp-bullets">
+        <li>End-to-end hands-on creative leadership, concept through execution</li>
+        <li>Cross-department alignment: marketing, sales, product</li>
+        <li>External agency and vendor creative partnership management</li>
+        <li>Bold, ROI-focused decisions that elevate brand value</li>
+      </ul>
+    </div>
+    <div class="exp-item reveal reveal-delay-2">
+      <div class="exp-icon">06 / Technical</div>
+      <div class="exp-title">Technical Skills</div>
+      <div class="exp-tech">Adobe Creative Suite · Google Analytics &amp; Ads · SEO/SEM · HTML · PHP · CSS · Video/Audio Editing · PowerPoint · Multiple Email Platforms · Marketo · Salesforce · Pardot · HubSpot · SEMrush · SimilarWeb · MOZ</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK HISTORY -->
+<div class="history-section">
+  <div class="history-intro">
+    <div class="reveal">
+      <p class="section-label">Biotech / Life Sciences</p>
+      <h2 class="section-title">Work <em>History</em></h2>
+    </div>
+    <p style="font-size:15px;color:var(--mid);line-height:1.8;" class="reveal reveal-delay-1">Proven track record across multiple biotech and life sciences brands — consistent, measurable growth in web traffic, lead generation, social reach, and brand equity.</p>
+  </div>
+  <div class="history-logos reveal">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/99221994-4620-4150-a3e3-1874a6af75a5/logo-amg-03a.png" alt="AMG">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/b1a42385-33ad-4b09-a7f9-203eb764e928/logo-nanostring-03a.png" alt="NanoString">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/9f52fc93-68a4-47d0-a706-a0ee39ebaf37/logo-berkeley-lights-03a.png" alt="Berkeley Lights">
+  </div>
+  <div class="history-grid">
+    <div class="history-item reveal">
+      <div class="h-company">Labcyte</div>
+      <div class="h-role">Senior Marketing Director</div>
+      <div class="h-results">
+        <div><div class="h-result-num" data-target="186">0%</div><div class="h-result-label">Web Sessions</div></div>
+        <div><div class="h-result-num" data-target="4000">0%</div><div class="h-result-label">Social Followers</div></div>
+        <div><div class="h-result-num" data-target="180">0%</div><div class="h-result-label">Lead-Gen MQLs</div></div>
+      </div>
+      <div class="h-tags"><span class="tag">Web Design</span><span class="tag">Brand</span><span class="tag">Trade Show</span><span class="tag">Photography</span></div>
+    </div>
+    <div class="history-item reveal reveal-delay-1">
+      <div class="h-company">NanoString</div>
+      <div class="h-role">Marketing &amp; Creative</div>
+      <div class="h-results">
+        <div><div class="h-result-num" data-target="165">0%</div><div class="h-result-label">Web Sessions</div></div>
+        <div><div class="h-result-num" data-target="300">0%</div><div class="h-result-label">Form Submissions</div></div>
+        <div><div class="h-result-num" data-target="400">0%</div><div class="h-result-label">Social Followers</div></div>
+      </div>
+      <div class="h-tags"><span class="tag">Packaging</span><span class="tag">Logo Design</span><span class="tag">Icon Design</span></div>
+    </div>
+    <div class="history-item reveal reveal-delay-2">
+      <div class="h-company">Berkeley Lights</div>
+      <div class="h-role">Creative Marketing Leader</div>
+      <div class="h-results">
+        <div><div class="h-result-num" data-target="65">0%</div><div class="h-result-label">Web Sessions</div></div>
+        <div><div class="h-result-num" data-target="125">0%</div><div class="h-result-label">Social Followers</div></div>
+        <div><div class="h-result-num" data-target="60">0%</div><div class="h-result-label">Lead-Gen MQLs</div></div>
+      </div>
+      <div class="h-tags"><span class="tag">UI/UX</span><span class="tag">Print Ads</span><span class="tag">Web Concept</span></div>
+    </div>
+    <div class="history-item reveal">
+      <div class="h-company">Purigen Bio</div>
+      <div class="h-role">Digital Marketing Director</div>
+      <div class="h-results">
+        <div><div class="h-result-num" data-target="500">0%</div><div class="h-result-label">Web Sessions</div></div>
+        <div><div class="h-result-num" data-target="700">0%</div><div class="h-result-label">Social Followers</div></div>
+        <div><div class="h-result-num" data-target="200">0%</div><div class="h-result-label">Lead-Gen MQLs</div></div>
+      </div>
+      <div class="h-tags"><span class="tag">Digital Ads</span><span class="tag">Campaign Mgmt</span><span class="tag">Web</span></div>
+    </div>
+    <div class="history-item reveal reveal-delay-1">
+      <div class="h-company">CDI Labs</div>
+      <div class="h-role">Brand &amp; Content Lead</div>
+      <div class="h-results">
+        <div><div class="h-result-num" data-target="250">0%</div><div class="h-result-label">Web Sessions</div></div>
+        <div><div class="h-result-num" data-target="175">0%</div><div class="h-result-label">Social Followers</div></div>
+        <div><div class="h-result-num" data-target="125">0%</div><div class="h-result-label">Lead-Gen MQLs</div></div>
+      </div>
+      <div class="h-tags"><span class="tag">Email</span><span class="tag">Social Video</span><span class="tag">Brochure</span></div>
+    </div>
+    <div class="history-item reveal reveal-delay-2">
+      <div class="h-company">AMG</div>
+      <div class="h-role">Marketing &amp; UI/UX Lead</div>
+      <div class="h-results">
+        <div><div class="h-result-num" data-target="48">0%</div><div class="h-result-label">Web Sessions</div></div>
+        <div><div class="h-result-num" data-target="180">0%</div><div class="h-result-label">Social Followers</div></div>
+        <div><div class="h-result-num" data-target="85">0%</div><div class="h-result-label">Lead-Gen MQLs</div></div>
+      </div>
+      <div class="h-tags"><span class="tag">UI/UX</span><span class="tag">Web &amp; CMS</span><span class="tag">Pop-up Banners</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="portfolio-section" id="portfolio-section">
+  <div class="portfolio-header reveal">
+    <div>
+      <p class="section-label">Selected Work</p>
+      <h2 class="section-title">Portfolio <em>Highlights</em></h2>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.8rem">
+      <div class="portfolio-filter" id="portfolio-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="brand">Brand</button>
+        <button class="filter-btn" data-filter="digital">Digital</button>
+        <button class="filter-btn" data-filter="trade-show">Trade Show</button>
+      </div>
+      <a href="https://paulmoon.com/portfolio" class="btn-ghost" target="_blank">View Full Portfolio →</a>
+    </div>
+  </div>
+
+  <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem" class="reveal">Examples of Web Design and Development</p>
+  <div class="portfolio-grid" id="portfolio-grid">
+    <div class="port-card port-card--wide reveal" data-category="web">
+      <div class="port-img-wrap">
+        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/aead7e18-5766-4678-be32-3a710549a057/web-labcyte-products-01a.png" alt="Labcyte website" loading="lazy">
+      </div>
+      <div class="port-body">
+        <div class="port-cat">Custom Web + CMS Design and Development</div>
+        <div class="port-title">Labcyte Website &amp; Graphics</div>
+        <div class="port-desc">Labcyte website and graphics design and development on custom CMS — drove 186% increase in unique web sessions and 180% increase in lead-gen MQLs.</div>
+      </div>
+    </div>
+    <div class="port-card reveal reveal-delay-1" data-category="web">
+      <div class="port-img-wrap port-empty"><span class="port-empty-label">Berkeley Lights Concept</span></div>
+      <div class="port-body">
+        <div class="port-cat">Custom Web Design (Concept)</div>
+        <div class="port-title">Berkeley Lights Web Design</div>
+        <div class="port-desc">Berkeley Lights custom web design concept for advanced cell biology instruments.</div>
+      </div>
+    </div>
+    <div class="port-card reveal" data-category="web">
+      <div class="port-img-wrap port-empty"><span class="port-empty-label">CDI Labs</span></div>
+      <div class="port-body">
+        <div class="port-cat">Custom Web + CMS Design and Development</div>
+        <div class="port-title">CDI Labs Website</div>
+        <div class="port-desc">CDI Labs custom website and CMS — 250% increase in unique sessions, 125% increase in lead-gen MQLs.</div>
+      </div>
+    </div>
+    <div class="port-card reveal reveal-delay-1" data-category="web">
+      <div class="port-img-wrap port-empty"><span class="port-empty-label">AMG EVOS</span></div>
+      <div class="port-body">
+        <div class="port-cat">Custom Web + CMS Design and Development</div>
+        <div class="port-title">AMG EVOS Microscope Site</div>
+        <div class="port-desc">AMG EVOS microscope custom web and CMS design and development for B2B scientific audience.</div>
+      </div>
+    </div>
+    <div class="port-card reveal reveal-delay-2" data-category="web">
+      <div class="port-img-wrap port-empty"><span class="port-empty-label">Purigen + Distributor CMS</span></div>
+      <div class="port-body">
+        <div class="port-cat">Custom Web + Distributor CMS</div>
+        <div class="port-title">Purigen Biosystems Site</div>
+        <div class="port-desc">Purigen custom CMS and distributor access site for centralized asset management — 500% web sessions increase.</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin:3rem 0 1rem" class="reveal">Examples of Other Marketing Projects</p>
+  <div class="portfolio-grid">
+    <div class="port-card reveal" data-category="brand">
+      <div class="port-img-wrap">
+        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/1e20ca3f-44c8-4ec1-8468-d0b84f934700/brochure-labcyte-echo-2019.jpg" alt="Labcyte Echo brochure" loading="lazy">
+      </div>
+      <div class="port-body">
+        <div class="port-cat">Brochure Design + Product Photography</div>
+        <div class="port-title">Labcyte Echo Brochure</div>
+        <div class="port-desc">Labcyte brochure design and product photography for Echo liquid handlers.</div>
+      </div>
+    </div>
+    <div class="port-card reveal reveal-delay-1" data-category="trade-show">
+      <div class="port-img-wrap">
+        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6e0e0f04-9e43-43d2-9bf6-53451342fe7f/booth-design-labcyte2.jpg" alt="Labcyte trade show booth" loading="lazy">
+      </div>
+      <div class="port-body">
+        <div class="port-cat">Trade Show Booth Design</div>
+        <div class="port-title">Labcyte 20×20 Trade Show Booth</div>
+        <div class="port-desc">Labcyte trade show 20×20 booth design — immersive 400 sq ft conference environment, concept through fabrication.</div>
+      </div>
+    </div>
+    <div class="port-card reveal reveal-delay-2" data-category="brand">
+      <div class="port-img-wrap" style="background:#111;display:flex;align-items:center;justify-content:center;padding:2rem">
+        <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/b1a42385-33ad-4b09-a7f9-203eb764e928/logo-nanostring-03a.png" alt="NanoString" style="max-width:150px;max-height:70px;object-fit:contain" loading="lazy">
+      </div>
+      <div class="port-body">
+        <div class="port-cat">Packaging, Icon + Logo Design</div>
+        <div class="port-title">NanoString Identity System</div>
+        <div class="port-desc">NanoString packaging, logo and icon design for nCounter and Elements product lines.</div>
+      </div>
+    </div>
+    <div class="port-card reveal" data-category="digital">
+      <div class="port-img-wrap port-empty"><span class="port-empty-label">Purigen Banner Ads</span></div>
+      <div class="port-body">
+        <div class="port-cat">Digital Ad Design + Campaign Management</div>
+        <div class="port-title">Purigen Banner Ad Series</div>
+        <div class="port-desc">Purigen banner ads — design, product photography, and full campaign management across digital channels.</div>
+      </div>
+    </div>
+    <div class="port-card reveal reveal-delay-1" data-category="digital">
+      <div class="port-img-wrap port-empty"><span class="port-empty-label">CDI Labs Email</span></div>
+      <div class="port-body">
+        <div class="port-cat">Email Design + Campaigns</div>
+        <div class="port-title">CDI Labs Email Campaign Series</div>
+        <div class="port-desc">CDI Labs email campaign series — design, copy, and A/B test management across audience segments.</div>
+      </div>
+    </div>
+    <div class="port-card reveal reveal-delay-2" data-category="brand">
+      <div class="port-img-wrap port-empty"><span class="port-empty-label">Berkeley Lights</span></div>
+      <div class="port-body">
+        <div class="port-cat">Print Ad Design + Product Photography</div>
+        <div class="port-title">Berkeley Lights Beacon Select Ad</div>
+        <div class="port-desc">Berkeley Lights print ad design and product photography for the Beacon Select instrument.</div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-more reveal">
+    <a href="https://paulmoon.com/portfolio" class="btn-primary" target="_blank"><span>View Full Portfolio ↗</span></a>
+  </div>
+</div>
+
+<!-- AWARDS -->
+<div class="awards-section">
+  <div class="reveal">
+    <p class="section-label light">Industry Recognition</p>
+    <h2 class="section-title light">Awards &amp; <em>Recognitions</em></h2>
+  </div>
+  <div class="awards-grid">
+    <a class="award-item reveal" href="https://www.hermes-awards.com" target="_blank">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/518d2c0b-a4c6-4bc2-a482-9ef5545502d9/logo-hermes-03d.png" alt="Hermes Creative Awards">
+      <div class="award-name">Hermes Creative</div>
+    </a>
+    <a class="award-item reveal reveal-delay-1" href="https://www.museaward.com" target="_blank">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/27e8a4b2-3a68-44e3-beff-b707295a7413/logo-muse-award-03a.png" alt="MUSE Creative Awards">
+      <div class="award-name">MUSE Award</div>
+    </a>
+    <a class="award-item reveal reveal-delay-2" href="https://www.horizoninteractiveawards.com/web-site-awards/2018/b2b" target="_blank">
+      <div class="award-text">Horizon<br><em>Interactive</em></div>
+      <div class="award-name">Best B2B Site 2018</div>
+    </a>
+    <a class="award-item reveal reveal-delay-3" href="https://www.webaward.org/winner/34139/bakir-avdic-wins-2018-webaward-for-labcyte-inc.html" target="_blank">
+      <div class="award-text">Web<em>Award</em></div>
+      <div class="award-name">Best Biotech Website</div>
+    </a>
+    <a class="award-item reveal reveal-delay-4" href="https://www.iacaward.org/iac/winner/18055/purigen-biosystems-wins-2021-iac-award-for-purigen-website.html" target="_blank">
+      <div class="award-text" style="font-size:2rem">IAC</div>
+      <div class="award-name">Internet Advertising Competition</div>
+    </a>
+    <a class="award-item reveal reveal-delay-4" href="https://www.marcom-awards.com" target="_blank">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/f8dacb95-910f-4a48-a07f-15cbb3f22a85/logo-marcom-03a.png" alt="MARCOM Creative Awards">
+      <div class="award-name">MARCOM Award</div>
+    </a>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-section" id="results-section">
+  <div class="reveal">
+    <p class="section-label">Key Achievements</p>
+    <h2 class="section-title">Results &amp; <em>Metrics</em></h2>
+  </div>
+  <div class="results-tabs" id="results-tabs">
+    <button class="results-tab active" data-tab="nanostring">NanoString</button>
+    <button class="results-tab" data-tab="labcyte">Labcyte</button>
+    <button class="results-tab" data-tab="purigen">Purigen Bio</button>
+    <button class="results-tab" data-tab="personalis">Personalis</button>
+    <button class="results-tab" data-tab="berkeley">Berkeley Lights</button>
+    <button class="results-tab" data-tab="cdi">CDI Labs</button>
+  </div>
+  <div class="results-panel active" id="tab-nanostring">
+    <div class="result-links" style="margin-bottom:1.5rem">
+      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Chris-Grimley-02.pdf" target="_blank">Recommendation (Manager) ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Barney-Saunders-02.pdf" target="_blank">Recommendation (SVP Mkg) ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/2013_Marcom_GSM_2014_PM.pdf" target="_blank">Year-End Report PDF ↗</a>
+    </div>
+    <div class="results-stats">
+      <div class="result-stat"><div class="result-num">165%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
+      <div class="result-stat"><div class="result-num">48%</div><div class="result-label">Increase in Organic Search</div></div>
+      <div class="result-stat"><div class="result-num">300%</div><div class="result-label">Increase in Web Form Submissions</div></div>
+      <div class="result-stat"><div class="result-num">350%</div><div class="result-label">Increase in PPC / GA Conversions</div></div>
+      <div class="result-stat"><div class="result-num">150%</div><div class="result-label">Increase in Overall Lead-Gen MQLs</div></div>
+      <div class="result-stat"><div class="result-num">400%</div><div class="result-label">Increase in Social Media Followers</div></div>
+      <div class="result-stat"><div class="result-num">3</div><div class="result-label">Custom Websites + CMS Built</div></div>
+      <div class="result-stat"><div class="result-num">3</div><div class="result-label">Custom Trade Show Booth Designs</div></div>
+    </div>
+  </div>
+  <div class="results-panel" id="tab-labcyte">
+    <div class="result-links" style="margin-bottom:1.5rem">
+      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Mark-Fischer-Colbrie-02.pdf" target="_blank">Recommendation (CEO) ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/2017-Report-Marcom-Labcyte.pdf" target="_blank">Year-End Report PDF ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/metrics-labcyte-banner-ads-fy17.pdf" target="_blank">Banner Ads Report PDF ↗</a>
+    </div>
+    <div class="results-stats">
+      <div class="result-stat"><div class="result-num">186%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
+      <div class="result-stat"><div class="result-num">35%</div><div class="result-label">Increase in Organic Search</div></div>
+      <div class="result-stat"><div class="result-num">600%</div><div class="result-label">Increase in Web Form Submissions</div></div>
+      <div class="result-stat"><div class="result-num">200%</div><div class="result-label">Increase in PPC / GA Conversions</div></div>
+      <div class="result-stat"><div class="result-num">4000%</div><div class="result-label">Increase in Social Media Followers</div></div>
+      <div class="result-stat"><div class="result-num">180%</div><div class="result-label">Increase in Overall Lead-Gen MQLs</div></div>
+      <div class="result-stat"><div class="result-num">4</div><div class="result-label">Custom Websites + CMS Built</div></div>
+      <div class="result-stat"><div class="result-num">3</div><div class="result-label">Custom Trade Show Booth Designs</div></div>
+    </div>
+  </div>
+  <div class="results-panel" id="tab-purigen">
+    <div class="results-stats">
+      <div class="result-stat"><div class="result-num">500%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
+      <div class="result-stat"><div class="result-num">38%</div><div class="result-label">Increase in Organic Search</div></div>
+      <div class="result-stat"><div class="result-num">500+/Yr</div><div class="result-label">Increase in Web Form Submissions</div></div>
+      <div class="result-stat"><div class="result-num">30+/Mo</div><div class="result-label">Increase in PPC / GA Conversions</div></div>
+      <div class="result-stat"><div class="result-num">200%</div><div class="result-label">Increase in Overall Lead-Gen MQLs</div></div>
+      <div class="result-stat"><div class="result-num">700%</div><div class="result-label">Increase in Social Media Followers</div></div>
+      <div class="result-stat"><div class="result-num">2</div><div class="result-label">Custom Websites + CMS Built</div></div>
+      <div class="result-stat"><div class="result-num">2</div><div class="result-label">Custom Trade Show Booth Designs</div></div>
+    </div>
+  </div>
+  <div class="results-panel" id="tab-personalis">
+    <div class="results-stats">
+      <div class="result-stat"><div class="result-num">48%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
+      <div class="result-stat"><div class="result-num">45%</div><div class="result-label">Increase in Organic Search</div></div>
+      <div class="result-stat"><div class="result-num">200%</div><div class="result-label">Increase in Web Form Submissions</div></div>
+      <div class="result-stat"><div class="result-num">75%</div><div class="result-label">Increase in PPC / GA Conversions</div></div>
+      <div class="result-stat"><div class="result-num">85%</div><div class="result-label">Increase in Overall Lead-Gen MQLs</div></div>
+      <div class="result-stat"><div class="result-num">180%</div><div class="result-label">Increase in Social Media Followers</div></div>
+      <div class="result-stat"><div class="result-num">1</div><div class="result-label">Custom Website + CMS</div></div>
+      <div class="result-stat"><div class="result-num">1</div><div class="result-label">Custom Trade Show Booth</div></div>
+    </div>
+  </div>
+  <div class="results-panel" id="tab-berkeley">
+    <div class="results-stats">
+      <div class="result-stat"><div class="result-num">65%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
+      <div class="result-stat"><div class="result-num">25%</div><div class="result-label">Increase in Organic Search</div></div>
+      <div class="result-stat"><div class="result-num">250%</div><div class="result-label">Increase in Web Form Submissions</div></div>
+      <div class="result-stat"><div class="result-num">50%</div><div class="result-label">Increase in PPC / GA Conversions</div></div>
+      <div class="result-stat"><div class="result-num">60%</div><div class="result-label">Increase in Overall Lead-Gen MQLs</div></div>
+      <div class="result-stat"><div class="result-num">125%</div><div class="result-label">Increase in Social Media Followers</div></div>
+      <div class="result-stat"><div class="result-num">1</div><div class="result-label">Custom Website Concept Designed</div></div>
+      <div class="result-stat"><div class="result-num">1</div><div class="result-label">Custom Trade Show Booth Designed</div></div>
+    </div>
+  </div>
+  <div class="results-panel" id="tab-cdi">
+    <div class="results-stats">
+      <div class="result-stat"><div class="result-num">250%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
+      <div class="result-stat"><div class="result-num">45%</div><div class="result-label">Increase in Organic Search</div></div>
+      <div class="result-stat"><div class="result-num">85%</div><div class="result-label">Increase in Web Form Submissions</div></div>
+      <div class="result-stat"><div class="result-num">45%</div><div class="result-label">Increase in PPC / GA Conversions</div></div>
+      <div class="result-stat"><div class="result-num">125%</div><div class="result-label">Increase in Overall Lead-Gen MQLs</div></div>
+      <div class="result-stat"><div class="result-num">175%</div><div class="result-label">Increase in Social Media Followers</div></div>
+      <div class="result-stat"><div class="result-num">2</div><div class="result-label">Custom Websites + CMS Built</div></div>
+      <div class="result-stat"><div class="result-num">1</div><div class="result-label">Custom Trade Show Booth Designed</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT / PROFILE -->
+<div class="about-section" id="about-deep">
+  <div class="about-grid">
+    <div class="about-photo reveal-left">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/d431343c-7982-4807-9e86-39e1a5f7b4dc/Profile-Paul-Moon-Suit-02d.gif" alt="Paul Moon">
+      <div class="photo-caption">Paul Moon — 360° Marketing Leader</div>
+    </div>
+    <div class="about-content reveal-right">
+      <p class="section-label">Bold Creative. Seamless Strategy.</p>
+      <h2 class="section-title">Smarter <em>Growth</em></h2>
+      <p class="lead">I design, build and lead high-performing marketing ecosystems that are as strategically sound as they are creatively compelling — driving measurable ROI through integrated, insight-driven brand and marketing communications with proven cross-functional leadership.</p>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <div class="skill-group-title">Creative Brand &amp; Design</div>
+          <ul><li>Bold, memorable brand creation</li><li>Digital-first design thinking</li><li>Typography &amp; visual hierarchy</li><li>Motion design &amp; multimedia</li></ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Brand Strategy &amp; Management</div>
+          <ul><li>Brand identity &amp; equity building</li><li>Visual storytelling &amp; narrative</li><li>Creative system architecture</li><li>Stakeholder alignment</li></ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Marketing Operations &amp; ROI</div>
+          <ul><li>Budget &amp; performance oversight</li><li>Multi-channel orchestration</li><li>Demand gen &amp; lead nurturing</li><li>KPI dashboards &amp; reporting</li></ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">ROI-driven Digital Marketing</div>
+          <ul><li>Data-first digital strategy</li><li>Integrated campaign execution</li><li>SEO/SEM &amp; qualified traffic growth</li><li>Analytics &amp; performance reporting</li></ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Social Media Growth</div>
+          <ul><li>Cross-platform content strategy</li><li>LinkedIn, Instagram, X, YouTube</li><li>KPIs, dashboards, data-driven decisions</li></ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Cross-functional Leadership</div>
+          <ul><li>Global marketing strategy</li><li>Cross-team collaboration</li><li>Data-driven market insights</li></ul>
+        </div>
+      </div>
+      <div class="tech-stack">
+        <div class="tech-stack-label">Technical Skills</div>
+        <div class="tech-stack-text">Adobe Creative Suite · Google Analytics &amp; Ads · SEO/SEM · HTML · PHP · CSS · Video/Audio Editing · PowerPoint · Multiple Email Platforms · Marketo · Salesforce · Pardot · HubSpot · SEMrush · SimilarWeb · MOZ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS MARQUEE -->
+<div class="testimonials">
+  <div class="testimonials-header reveal">
+    <div>
+      <p class="section-label">Recommendations</p>
+      <h2 class="section-title">What <em>Leaders</em> Say</h2>
+    </div>
+    <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" class="btn-ghost">Read All Letters →</a>
+  </div>
+  <div class="test-track">
+    <div class="test-inner">
+      <div class="test-card"><div class="test-quote">"Paul brought a rare combination of creative vision and business acumen to every project. His ability to lead cross-functional teams while maintaining brand excellence was truly exceptional."</div><div class="test-attr"><div class="test-initials">MF</div><div><div class="test-name">Mark Fischer-Colbrie</div><div class="test-co">CEO · Labcyte</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"Paul has a true gift for translating complex scientific concepts into compelling visual narratives that resonate powerfully with both scientific and business audiences alike."</div><div class="test-attr"><div class="test-initials">BS</div><div><div class="test-name">Barney Saunders</div><div class="test-co">SVP Marketing · NanoString</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"The website redesign Paul led resulted in a 186% increase in qualified web traffic and became the foundation for our entire demand generation strategy for years to come."</div><div class="test-attr"><div class="test-initials">CG</div><div><div class="test-name">Chris Grimley</div><div class="test-co">Director · NanoString</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"Paul's operational instinct is as strong as his creative instinct. He builds systems that outlast his tenure — workflows, brand guidelines, and processes that teams rely on for years."</div><div class="test-attr"><div class="test-initials">PB</div><div><div class="test-name">Purigen Leadership</div><div class="test-co">Purigen Biosystems</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"Paul brought a rare combination of creative vision and business acumen to every project. His ability to lead cross-functional teams while maintaining brand excellence was truly exceptional."</div><div class="test-attr"><div class="test-initials">MF</div><div><div class="test-name">Mark Fischer-Colbrie</div><div class="test-co">CEO · Labcyte</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"Paul has a true gift for translating complex scientific concepts into compelling visual narratives that resonate powerfully with both scientific and business audiences alike."</div><div class="test-attr"><div class="test-initials">BS</div><div><div class="test-name">Barney Saunders</div><div class="test-co">SVP Marketing · NanoString</div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="contact-section">
+  <div class="reveal-left">
+    <p class="section-label light">Open to Opportunities</p>
+    <h2 class="cta-title">Ready for the <em>Next Level?</em></h2>
+    <p class="cta-body">I'm currently exploring new marketing roles and would love to discuss how I can bring positive results for your company. I welcome all considerations — your message is confidential and I respond within 48 hours.</p>
+    <a href="mailto:paul@paulmoon.com" class="btn-primary" style="background:var(--cream);color:var(--ink);margin-bottom:0"><span style="color:var(--ink)">Send a Message ↗</span></a>
+  </div>
+  <div class="reveal-right">
+    <div class="cta-img-wrap">
+      <img class="cta-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/0ce9b7e9-f958-4f64-a4ff-1633f2e49c39/hero-main-collage-03a.jpg" alt="Paul Moon portfolio">
+    </div>
+    <div class="cta-contact">
+      <div class="contact-row"><span class="contact-label">Email</span><a href="mailto:paul@paulmoon.com" class="contact-value">paul@paulmoon.com</a></div>
+      <div class="contact-row"><span class="contact-label">Phone</span><a href="tel:9492922925" class="contact-value">(949) 292-2925</a></div>
+      <div class="contact-row"><span class="contact-label">LinkedIn</span><a href="https://www.linkedin.com/in/paultmoon/" target="_blank" class="contact-value">linkedin.com/in/paultmoon</a></div>
+      <div class="contact-row"><span class="contact-label">Resume</span><a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" class="contact-value">Download PDF ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo"><img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=300w" alt="Paul Moon"></a>
+  <span class="footer-copy">© 2026 Paul Moon · All Rights Reserved</span>
+  <ul class="footer-links">
+    <li><a href="https://paulmoon.com/about">About</a></li>
+    <li><a href="https://paulmoon.com/portfolio">Portfolio</a></li>
+    <li><a href="https://paulmoon.com/results">Results</a></li>
+    <li><a href="https://paulmoon.com/photos">Photos + UI/UX</a></li>
+    <li><a href="https://paulmoon.com/contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+// ── PAGE LOADER ──
+window.addEventListener('load', () => {
+  setTimeout(() => { document.getElementById('loader').classList.add('done'); }, 1600);
+});
+
+// ── CUSTOM CURSOR ──
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function animRing(){
+  rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+// ── SCROLL REVEAL ──
+const revealAll = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+revealAll.forEach(el => revObs.observe(el));
+
+// ── NAV SCROLL ──
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, {passive:true});
+
+// ── NAV ACTIVE ──
+const navAs = document.querySelectorAll('.nav-links a');
+const secIds = ['philosophy-section','expertise-section','portfolio-section','results-section','contact-section'];
+const secObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      navAs.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+}, { rootMargin:'-35% 0px -55% 0px' });
+secIds.forEach(id => { const el=document.getElementById(id); if(el) secObs.observe(el); });
+
+// ── ANIMATED COUNTERS ──
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('.h-result-num[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const dur = 1600;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min((now-start)/dur,1);
+        const ease = 1-Math.pow(1-p,3);
+        el.textContent = Math.round(ease*target)+'%';
+        if(p<1) requestAnimationFrame(tick);
+        else el.textContent = target+'%';
+      }
+      requestAnimationFrame(tick);
+    });
+    counterObs.unobserve(e.target);
+  });
+}, {threshold:0.3});
+document.querySelectorAll('.history-item').forEach(el => counterObs.observe(el));
+
+// ── RESULTS TABS ──
+document.getElementById('results-tabs').addEventListener('click', e => {
+  if(!e.target.matches('.results-tab')) return;
+  document.querySelectorAll('.results-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.results-panel').forEach(p=>p.classList.remove('active'));
+  e.target.classList.add('active');
+  const panel = document.getElementById('tab-'+e.target.dataset.tab);
+  if(panel) panel.classList.add('active');
+});
+
+// ── PORTFOLIO FILTER ──
+document.getElementById('portfolio-filter').addEventListener('click', e => {
+  if(!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  const filter = e.target.dataset.filter;
+  document.querySelectorAll('#portfolio-grid .port-card').forEach(card => {
+    card.style.display = (filter==='all' || card.dataset.category===filter) ? '' : 'none';
+  });
+});
+
+// ── PARALLAX HERO IMAGE ──
+window.addEventListener('scroll', () => {
+  const heroImg = document.querySelector('.hero-img');
+  if(heroImg) heroImg.style.transform = `scale(1) translateY(${window.scrollY*0.12}px)`;
+}, {passive:true});
+
+// ── MAGNETIC BUTTONS ──
+document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width/2) * 0.25;
+    const dy = (e.clientY - r.top - r.height/2) * 0.25;
+    btn.style.transform = `translate(${dx}px,${dy}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+</script>
+</body>
+</html>
