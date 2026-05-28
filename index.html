@@ -3,9 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Paul Moon — Award-winning 360° Creative Marketing Leader specializing in Biotech and Healthcare. Bold creative, smart analytics, measurable ROI.">
+
 <title>Paul Moon — 360° Creative Marketing Leader</title>
+
+<!-- PRECONNECT: fonts + image CDN load in parallel before any requests fire -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
+<link rel="dns-prefetch" href="https://images.squarespace-cdn.com">
+
+<!-- FONTS: display=swap prevents render-blocking -->
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- PRELOAD hero image so it's fetched at highest priority immediately -->
+<link rel="preload" as="image" href="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5164b8fd-3a9d-4298-8871-d76f720e39fb/hero-main-collage-05c.jpg?format=800w">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -19,8 +32,8 @@ html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
 
 /* ── CUSTOM CURSOR ── */
-#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.08s,width 0.25s,height 0.25s,background 0.25s,opacity 0.2s;mix-blend-mode:multiply}
-#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid rgba(200,80,42,0.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease-out,width 0.3s,height 0.3s,border-color 0.3s,opacity 0.2s}
+#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s,opacity 0.2s;mix-blend-mode:multiply}
+#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid rgba(200,80,42,0.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s}
 body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:6px;height:6px}
 body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:60px;height:60px;border-color:rgba(200,80,42,0.6)}
 
@@ -37,8 +50,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:60px;he
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(245,240,232,0);backdrop-filter:blur(0px);border-bottom:0.5px solid transparent;transition:all 0.4s ease}
 nav.scrolled{background:rgba(245,240,232,0.95);backdrop-filter:blur(20px);border-bottom-color:var(--border);padding:0.8rem 3rem}
-.nav-logo img{height:30px;display:block;opacity:0;transition:opacity 0.4s}
-nav.scrolled .nav-logo img{opacity:1}
+.nav-logo img{height:44px;width:auto;display:block;opacity:1;transition:opacity 0.3s}
 .nav-links{display:flex;gap:2.2rem;list-style:none}
 .nav-links a{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;font-weight:600;transition:color 0.2s;position:relative;padding-bottom:3px}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s}
@@ -65,7 +77,6 @@ h1.hero-title em{font-style:italic;color:var(--accent)}
 .hero-scroll-hint{position:absolute;bottom:2.5rem;left:3rem;font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:0.7rem;opacity:0;animation:fadeUp 0.6s 2.5s forwards}
 .hero-scroll-hint::before{content:'';display:block;width:1px;height:40px;background:var(--mid);animation:scrollLine 2s 3s infinite}
 @keyframes scrollLine{0%,100%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(0.4);transform-origin:top}}
-
 .hero-right{position:relative;overflow:hidden;background:var(--ink)}
 .hero-img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;filter:grayscale(0.2);animation:heroImgIn 1s 1.4s cubic-bezier(0.4,0,0.2,1) forwards;transform:scale(1.05);transform-origin:center}
 @keyframes heroImgIn{to{opacity:0.8;transform:scale(1)}}
@@ -146,7 +157,7 @@ h2.section-title.light em{color:#d47a5a}
 .history-logos img{height:26px;width:auto;object-fit:contain;filter:grayscale(1);opacity:0.45;transition:opacity 0.3s,filter 0.3s}
 .history-logos img:hover{opacity:1;filter:grayscale(0)}
 .history-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border)}
-.history-item{background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1.2rem;transition:background 0.25s,transform 0.25s;cursor:default;position:relative;overflow:hidden}
+.history-item{background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1.2rem;transition:background 0.25s;cursor:default;position:relative;overflow:hidden}
 .history-item::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
 .history-item:hover{background:#EDE9D8}
 .history-item:hover::after{transform:scaleY(1)}
@@ -228,7 +239,7 @@ h2.section-title.light em{color:#d47a5a}
 .tech-stack-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:0.6rem}
 .tech-stack-text{font-size:13px;color:var(--mid);line-height:1.7}
 
-/* ── MARQUEE TESTIMONIALS ── */
+/* ── TESTIMONIALS ── */
 .testimonials{padding:6rem 0;border-top:0.5px solid var(--border);overflow:hidden;background:var(--cream)}
 .testimonials-header{padding:0 3rem 3rem;display:flex;justify-content:space-between;align-items:flex-end}
 .test-track{overflow:hidden}
@@ -252,7 +263,7 @@ h2.section-title.light em{color:#d47a5a}
 .cta-img{width:100%;height:100%;object-fit:cover;opacity:0.4;filter:grayscale(0.4);transition:opacity 0.5s,filter 0.5s}
 .cta-img-wrap:hover .cta-img{opacity:0.6;filter:grayscale(0)}
 .cta-contact{display:flex;flex-direction:column;gap:0}
-.contact-row{display:flex;align-items:baseline;gap:1rem;padding:1.1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06);transition:background 0.2s}
+.contact-row{display:flex;align-items:baseline;gap:1rem;padding:1.1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06)}
 .contact-row:last-child{border-bottom:none}
 .contact-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.25);min-width:72px}
 .contact-value{font-size:16px;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(245,240,232,0.12);padding-bottom:1px;transition:border-color 0.25s,color 0.25s}
@@ -267,9 +278,6 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
 .footer-links a{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.22);text-decoration:none;transition:color 0.2s}
 .footer-links a:hover{color:rgba(245,240,232,0.55)}
 
-/* ── ANIMATED COUNTER ── */
-.count-up{display:inline-block}
-
 /* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
 .reveal.visible{opacity:1;transform:none}
@@ -281,20 +289,6 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
 .reveal-left.visible{opacity:1;transform:none}
 .reveal-right{opacity:0;transform:translateX(28px);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
 .reveal-right.visible{opacity:1;transform:none}
-.reveal-scale{opacity:0;transform:scale(0.95);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
-.reveal-scale.visible{opacity:1;transform:none}
-
-/* ── PROGRESS BAR SECTION ── */
-.progress-section{background:var(--ink);padding:6rem 3rem;border-top:1px solid rgba(255,255,255,0.04)}
-.progress-grid{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start}
-.progress-bars{display:flex;flex-direction:column;gap:2.2rem}
-.prog-row{display:flex;align-items:center;gap:1.5rem}
-.prog-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.4);min-width:200px}
-.prog-track{flex:1;height:1px;background:rgba(255,255,255,0.06);position:relative;overflow:visible}
-.prog-fill{height:100%;width:0;background:var(--accent);transition:width 1.6s cubic-bezier(0.4,0,0.2,1);position:relative}
-.prog-fill::after{content:'';position:absolute;right:-4px;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--accent);opacity:0;transition:opacity 0.3s 1.5s}
-.prog-fill.done::after{opacity:1}
-.prog-val{font-family:var(--serif);font-size:1.6rem;color:var(--cream);min-width:4rem;text-align:right}
 
 @keyframes fadeUp{to{opacity:1;transform:none}}
 </style>
@@ -316,7 +310,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
 <!-- NAV -->
 <nav id="main-nav">
   <a href="#" class="nav-logo">
-    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=300w" alt="Paul Moon">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=500w" alt="Paul Moon" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links">
     <li><a href="#philosophy-section">About</a></li>
@@ -326,8 +320,8 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     <li><a href="#contact-section">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="https://www.linkedin.com/in/paultmoon/" target="_blank" class="nav-linkedin">LinkedIn ↗</a>
-    <a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" class="nav-cta">View Resume</a>
+    <a href="https://www.linkedin.com/in/paultmoon/" target="_blank" rel="noopener" class="nav-linkedin">LinkedIn ↗</a>
+    <a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" rel="noopener" class="nav-cta">View Resume</a>
   </div>
 </nav>
 
@@ -342,12 +336,19 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     <div class="hero-actions">
       <a href="#portfolio-section" class="btn-primary"><span>View Portfolio ↗</span></a>
       <a href="#philosophy-section" class="btn-outline">About Paul</a>
-      <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" class="btn-ghost">Recommendation Letters →</a>
+      <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" rel="noopener" class="btn-ghost">Recommendation Letters →</a>
     </div>
     <div class="hero-scroll-hint">Scroll to explore</div>
   </div>
   <div class="hero-right">
-    <img class="hero-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5164b8fd-3a9d-4298-8871-d76f720e39fb/hero-main-collage-05c.jpg?format=800w" alt="Paul Moon portfolio collage">
+    <!-- loading="eager" + fetchpriority="high" + preloaded format=800w = fastest possible first paint -->
+    <img class="hero-img"
+         src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/5164b8fd-3a9d-4298-8871-d76f720e39fb/hero-main-collage-05c.jpg?format=800w"
+         alt="Paul Moon portfolio collage"
+         loading="eager"
+         fetchpriority="high"
+         decoding="async"
+         width="900" height="900">
     <div class="hero-img-overlay"></div>
     <div class="hero-badge">
       <div class="hero-badge-label">Industry Awards</div>
@@ -381,8 +382,8 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     <p><strong>I also bring cross-functional leadership, guiding teams across marketing, creative, and operations to work seamlessly toward shared goals.</strong> My leadership style emphasizes clarity, accountability, and collaboration, enabling diverse stakeholders to align on strategy and execute with impact.</p>
     <p><strong>One key benefit that organizations gain from having an all-in-one marketing leader is seamless alignment of brand strategy, creative direction, and marketing operations</strong> — ensuring a strong, unified brand presence that maximizes ROI and resource allocation.</p>
     <div class="cta-row">
-      <a href="https://paulmoon.com/about" class="btn-primary"><span>Full About Page ↗</span></a>
-      <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" class="btn-ghost">Recommendation Letters →</a>
+      <a href="https://paulmoon.com/about" class="btn-primary" target="_blank" rel="noopener"><span>Full About Page ↗</span></a>
+      <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" rel="noopener" class="btn-ghost">Recommendation Letters →</a>
     </div>
   </div>
   <div class="pillars reveal-right">
@@ -392,7 +393,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
         <h3>Unified Brand Strategy and Vision</h3>
         <p>Bridging strategic brand development with execution, ensuring every marketing initiative reflects a consistent narrative — keeping vision, values, and positioning clear across all channels.</p>
       </div>
-      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/1e20ca3f-44c8-4ec1-8468-d0b84f934700/brochure-labcyte-echo-2019.jpg" alt="Labcyte Echo brochure">
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/1e20ca3f-44c8-4ec1-8468-d0b84f934700/brochure-labcyte-echo-2019.jpg?format=600w" alt="Labcyte Echo brochure" loading="lazy" decoding="async">
     </div>
     <div class="pillar">
       <div class="pillar-num">02</div>
@@ -400,7 +401,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
         <h3>Integrated Creative Direction and Execution</h3>
         <p>Design, storytelling, and content working together to amplify the brand's message — fostering innovation without losing sight of business objectives or audience relevance.</p>
       </div>
-      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/aead7e18-5766-4678-be32-3a710549a057/web-labcyte-products-01a.png" alt="Labcyte website">
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/aead7e18-5766-4678-be32-3a710549a057/web-labcyte-products-01a.png?format=600w" alt="Labcyte website" loading="lazy" decoding="async">
     </div>
     <div class="pillar">
       <div class="pillar-num">03</div>
@@ -408,7 +409,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
         <h3>Streamlined Marketing Operations</h3>
         <p>Systems and frameworks that optimize workflow, enhance collaboration, and increase speed-to-market — translating strategy and creativity into efficient, scalable execution.</p>
       </div>
-      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6e0e0f04-9e43-43d2-9bf6-53451342fe7f/booth-design-labcyte2.jpg" alt="Trade show booth">
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6e0e0f04-9e43-43d2-9bf6-53451342fe7f/booth-design-labcyte2.jpg?format=600w" alt="Trade show booth" loading="lazy" decoding="async">
     </div>
     <div class="pillar">
       <div class="pillar-num">04</div>
@@ -416,7 +417,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
         <h3>Performance and ROI Optimization</h3>
         <p>Every effort measurable and strategically aligned — resulting in a unified brand presence that drives engagement, maximizes ROI, and makes smarter use of resources.</p>
       </div>
-      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/7fadbff4-3c8e-4876-bc04-9127cb7ebb98/img-results-metrics-labcyte-01a.jpg" alt="Results metrics">
+      <img class="pillar-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/7fadbff4-3c8e-4876-bc04-9127cb7ebb98/img-results-metrics-labcyte-01a.jpg?format=600w" alt="Results metrics" loading="lazy" decoding="async">
     </div>
   </div>
 </div>
@@ -499,9 +500,9 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     <p style="font-size:15px;color:var(--mid);line-height:1.8;" class="reveal reveal-delay-1">Proven track record across multiple biotech and life sciences brands — consistent, measurable growth in web traffic, lead generation, social reach, and brand equity.</p>
   </div>
   <div class="history-logos reveal">
-    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/99221994-4620-4150-a3e3-1874a6af75a5/logo-amg-03a.png" alt="AMG">
-    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/b1a42385-33ad-4b09-a7f9-203eb764e928/logo-nanostring-03a.png" alt="NanoString">
-    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/9f52fc93-68a4-47d0-a706-a0ee39ebaf37/logo-berkeley-lights-03a.png" alt="Berkeley Lights">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/99221994-4620-4150-a3e3-1874a6af75a5/logo-amg-03a.png?format=300w" alt="AMG" loading="lazy" decoding="async">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/b1a42385-33ad-4b09-a7f9-203eb764e928/logo-nanostring-03a.png?format=300w" alt="NanoString" loading="lazy" decoding="async">
+    <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/9f52fc93-68a4-47d0-a706-a0ee39ebaf37/logo-berkeley-lights-03a.png?format=300w" alt="Berkeley Lights" loading="lazy" decoding="async">
   </div>
   <div class="history-grid">
     <div class="history-item reveal">
@@ -582,7 +583,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
         <button class="filter-btn" data-filter="digital">Digital</button>
         <button class="filter-btn" data-filter="trade-show">Trade Show</button>
       </div>
-      <a href="https://paulmoon.com/portfolio" class="btn-ghost" target="_blank">View Full Portfolio →</a>
+      <a href="paulmoon-portfolio.html" class="btn-ghost">View Full Portfolio →</a>
     </div>
   </div>
 
@@ -590,7 +591,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
   <div class="portfolio-grid" id="portfolio-grid">
     <div class="port-card port-card--wide reveal" data-category="web">
       <div class="port-img-wrap">
-        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/aead7e18-5766-4678-be32-3a710549a057/web-labcyte-products-01a.png" alt="Labcyte website" loading="lazy">
+        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/aead7e18-5766-4678-be32-3a710549a057/web-labcyte-products-01a.png?format=800w" alt="Labcyte website" loading="lazy" decoding="async">
       </div>
       <div class="port-body">
         <div class="port-cat">Custom Web + CMS Design and Development</div>
@@ -636,7 +637,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
   <div class="portfolio-grid">
     <div class="port-card reveal" data-category="brand">
       <div class="port-img-wrap">
-        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/1e20ca3f-44c8-4ec1-8468-d0b84f934700/brochure-labcyte-echo-2019.jpg" alt="Labcyte Echo brochure" loading="lazy">
+        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/1e20ca3f-44c8-4ec1-8468-d0b84f934700/brochure-labcyte-echo-2019.jpg?format=800w" alt="Labcyte Echo brochure" loading="lazy" decoding="async">
       </div>
       <div class="port-body">
         <div class="port-cat">Brochure Design + Product Photography</div>
@@ -646,7 +647,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     </div>
     <div class="port-card reveal reveal-delay-1" data-category="trade-show">
       <div class="port-img-wrap">
-        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6e0e0f04-9e43-43d2-9bf6-53451342fe7f/booth-design-labcyte2.jpg" alt="Labcyte trade show booth" loading="lazy">
+        <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/6e0e0f04-9e43-43d2-9bf6-53451342fe7f/booth-design-labcyte2.jpg?format=800w" alt="Labcyte trade show booth" loading="lazy" decoding="async">
       </div>
       <div class="port-body">
         <div class="port-cat">Trade Show Booth Design</div>
@@ -656,7 +657,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     </div>
     <div class="port-card reveal reveal-delay-2" data-category="brand">
       <div class="port-img-wrap" style="background:#111;display:flex;align-items:center;justify-content:center;padding:2rem">
-        <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/b1a42385-33ad-4b09-a7f9-203eb764e928/logo-nanostring-03a.png" alt="NanoString" style="max-width:150px;max-height:70px;object-fit:contain" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/b1a42385-33ad-4b09-a7f9-203eb764e928/logo-nanostring-03a.png?format=300w" alt="NanoString" style="max-width:150px;max-height:70px;object-fit:contain" loading="lazy" decoding="async">
       </div>
       <div class="port-body">
         <div class="port-cat">Packaging, Icon + Logo Design</div>
@@ -690,7 +691,7 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     </div>
   </div>
   <div class="portfolio-more reveal">
-    <a href="https://paulmoon.com/portfolio" class="btn-primary" target="_blank"><span>View Full Portfolio ↗</span></a>
+    <a href="paulmoon-portfolio.html" class="btn-primary"><span>View Full Portfolio ↗</span></a>
   </div>
 </div>
 
@@ -701,28 +702,28 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     <h2 class="section-title light">Awards &amp; <em>Recognitions</em></h2>
   </div>
   <div class="awards-grid">
-    <a class="award-item reveal" href="https://www.hermes-awards.com" target="_blank">
-      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/518d2c0b-a4c6-4bc2-a482-9ef5545502d9/logo-hermes-03d.png" alt="Hermes Creative Awards">
+    <a class="award-item reveal" href="https://www.hermes-awards.com" target="_blank" rel="noopener">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/518d2c0b-a4c6-4bc2-a482-9ef5545502d9/logo-hermes-03d.png?format=300w" alt="Hermes Creative Awards" loading="lazy" decoding="async">
       <div class="award-name">Hermes Creative</div>
     </a>
-    <a class="award-item reveal reveal-delay-1" href="https://www.museaward.com" target="_blank">
-      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/27e8a4b2-3a68-44e3-beff-b707295a7413/logo-muse-award-03a.png" alt="MUSE Creative Awards">
+    <a class="award-item reveal reveal-delay-1" href="https://www.museaward.com" target="_blank" rel="noopener">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/27e8a4b2-3a68-44e3-beff-b707295a7413/logo-muse-award-03a.png?format=300w" alt="MUSE Creative Awards" loading="lazy" decoding="async">
       <div class="award-name">MUSE Award</div>
     </a>
-    <a class="award-item reveal reveal-delay-2" href="https://www.horizoninteractiveawards.com/web-site-awards/2018/b2b" target="_blank">
+    <a class="award-item reveal reveal-delay-2" href="https://www.horizoninteractiveawards.com/web-site-awards/2018/b2b" target="_blank" rel="noopener">
       <div class="award-text">Horizon<br><em>Interactive</em></div>
       <div class="award-name">Best B2B Site 2018</div>
     </a>
-    <a class="award-item reveal reveal-delay-3" href="https://www.webaward.org/winner/34139/bakir-avdic-wins-2018-webaward-for-labcyte-inc.html" target="_blank">
+    <a class="award-item reveal reveal-delay-3" href="https://www.webaward.org/winner/34139/bakir-avdic-wins-2018-webaward-for-labcyte-inc.html" target="_blank" rel="noopener">
       <div class="award-text">Web<em>Award</em></div>
       <div class="award-name">Best Biotech Website</div>
     </a>
-    <a class="award-item reveal reveal-delay-4" href="https://www.iacaward.org/iac/winner/18055/purigen-biosystems-wins-2021-iac-award-for-purigen-website.html" target="_blank">
+    <a class="award-item reveal reveal-delay-4" href="https://www.iacaward.org/iac/winner/18055/purigen-biosystems-wins-2021-iac-award-for-purigen-website.html" target="_blank" rel="noopener">
       <div class="award-text" style="font-size:2rem">IAC</div>
       <div class="award-name">Internet Advertising Competition</div>
     </a>
-    <a class="award-item reveal reveal-delay-4" href="https://www.marcom-awards.com" target="_blank">
-      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/f8dacb95-910f-4a48-a07f-15cbb3f22a85/logo-marcom-03a.png" alt="MARCOM Creative Awards">
+    <a class="award-item reveal reveal-delay-4" href="https://www.marcom-awards.com" target="_blank" rel="noopener">
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/f8dacb95-910f-4a48-a07f-15cbb3f22a85/logo-marcom-03a.png?format=300w" alt="MARCOM Creative Awards" loading="lazy" decoding="async">
       <div class="award-name">MARCOM Award</div>
     </a>
   </div>
@@ -744,9 +745,9 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
   </div>
   <div class="results-panel active" id="tab-nanostring">
     <div class="result-links" style="margin-bottom:1.5rem">
-      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Chris-Grimley-02.pdf" target="_blank">Recommendation (Manager) ↗</a>
-      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Barney-Saunders-02.pdf" target="_blank">Recommendation (SVP Mkg) ↗</a>
-      <a class="result-link" href="https://paulmoon.com/s/2013_Marcom_GSM_2014_PM.pdf" target="_blank">Year-End Report PDF ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Chris-Grimley-02.pdf" target="_blank" rel="noopener">Recommendation (Manager) ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Barney-Saunders-02.pdf" target="_blank" rel="noopener">Recommendation (SVP Mkg) ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/2013_Marcom_GSM_2014_PM.pdf" target="_blank" rel="noopener">Year-End Report PDF ↗</a>
     </div>
     <div class="results-stats">
       <div class="result-stat"><div class="result-num">165%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
@@ -761,9 +762,9 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
   </div>
   <div class="results-panel" id="tab-labcyte">
     <div class="result-links" style="margin-bottom:1.5rem">
-      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Mark-Fischer-Colbrie-02.pdf" target="_blank">Recommendation (CEO) ↗</a>
-      <a class="result-link" href="https://paulmoon.com/s/2017-Report-Marcom-Labcyte.pdf" target="_blank">Year-End Report PDF ↗</a>
-      <a class="result-link" href="https://paulmoon.com/s/metrics-labcyte-banner-ads-fy17.pdf" target="_blank">Banner Ads Report PDF ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/Recommendation-Letter-Mark-Fischer-Colbrie-02.pdf" target="_blank" rel="noopener">Recommendation (CEO) ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/2017-Report-Marcom-Labcyte.pdf" target="_blank" rel="noopener">Year-End Report PDF ↗</a>
+      <a class="result-link" href="https://paulmoon.com/s/metrics-labcyte-banner-ads-fy17.pdf" target="_blank" rel="noopener">Banner Ads Report PDF ↗</a>
     </div>
     <div class="results-stats">
       <div class="result-stat"><div class="result-num">186%</div><div class="result-label">Increase in Unique Web Sessions</div></div>
@@ -826,11 +827,12 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
   </div>
 </div>
 
-<!-- ABOUT / PROFILE -->
+<!-- ABOUT -->
 <div class="about-section" id="about-deep">
   <div class="about-grid">
     <div class="about-photo reveal-left">
-      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/d431343c-7982-4807-9e86-39e1a5f7b4dc/Profile-Paul-Moon-Suit-02d.gif" alt="Paul Moon">
+      <!-- GIF profile photo — no format param since it's animated -->
+      <img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/d431343c-7982-4807-9e86-39e1a5f7b4dc/Profile-Paul-Moon-Suit-02d.gif" alt="Paul Moon" loading="lazy" decoding="async">
       <div class="photo-caption">Paul Moon — 360° Marketing Leader</div>
     </div>
     <div class="about-content reveal-right">
@@ -871,14 +873,14 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
   </div>
 </div>
 
-<!-- TESTIMONIALS MARQUEE -->
+<!-- TESTIMONIALS -->
 <div class="testimonials">
   <div class="testimonials-header reveal">
     <div>
       <p class="section-label">Recommendations</p>
       <h2 class="section-title">What <em>Leaders</em> Say</h2>
     </div>
-    <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" class="btn-ghost">Read All Letters →</a>
+    <a href="https://paulmoon.com/s/Recommendation-Letters-Paul-Moon-2026.pdf" target="_blank" rel="noopener" class="btn-ghost">Read All Letters →</a>
   </div>
   <div class="test-track">
     <div class="test-inner">
@@ -898,31 +900,30 @@ footer{background:#060605;padding:2.5rem 3rem;display:flex;align-items:center;ju
     <p class="section-label light">Open to Opportunities</p>
     <h2 class="cta-title">Ready for the <em>Next Level?</em></h2>
     <p class="cta-body">I'm currently exploring new marketing roles and would love to discuss how I can bring positive results for your company. I welcome all considerations — your message is confidential and I respond within 48 hours.</p>
-    <a href="mailto:paul@paulmoon.com" class="btn-primary" style="background:var(--cream);color:var(--ink);margin-bottom:0"><span style="color:var(--ink)">Send a Message ↗</span></a>
+    <a href="mailto:paul@paulmoon.com" class="btn-primary" style="background:var(--cream);color:var(--ink)"><span style="color:var(--ink)">Send a Message ↗</span></a>
   </div>
   <div class="reveal-right">
     <div class="cta-img-wrap">
-      <img class="cta-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/0ce9b7e9-f958-4f64-a4ff-1633f2e49c39/hero-main-collage-03a.jpg" alt="Paul Moon portfolio">
+      <img class="cta-img" src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/0ce9b7e9-f958-4f64-a4ff-1633f2e49c39/hero-main-collage-03a.jpg?format=800w" alt="Paul Moon portfolio" loading="lazy" decoding="async">
     </div>
     <div class="cta-contact">
       <div class="contact-row"><span class="contact-label">Email</span><a href="mailto:paul@paulmoon.com" class="contact-value">paul@paulmoon.com</a></div>
       <div class="contact-row"><span class="contact-label">Phone</span><a href="tel:9492922925" class="contact-value">(949) 292-2925</a></div>
-      <div class="contact-row"><span class="contact-label">LinkedIn</span><a href="https://www.linkedin.com/in/paultmoon/" target="_blank" class="contact-value">linkedin.com/in/paultmoon</a></div>
-      <div class="contact-row"><span class="contact-label">Resume</span><a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" class="contact-value">Download PDF ↗</a></div>
+      <div class="contact-row"><span class="contact-label">LinkedIn</span><a href="https://www.linkedin.com/in/paultmoon/" target="_blank" rel="noopener" class="contact-value">linkedin.com/in/paultmoon</a></div>
+      <div class="contact-row"><span class="contact-label">Resume</span><a href="https://paulmoon.com/s/Resume-Paul-Moon-Marketing.pdf" target="_blank" rel="noopener" class="contact-value">Download PDF ↗</a></div>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo"><img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=300w" alt="Paul Moon"></a>
+  <a href="#" class="footer-logo"><img src="https://images.squarespace-cdn.com/content/v1/68e3db1ba200cf5402dc959f/3b2c7070-4fa7-43b0-9295-9b30b042f14c/logo-paulmoon-03a.png?format=300w" alt="Paul Moon" loading="lazy" decoding="async"></a>
   <span class="footer-copy">© 2026 Paul Moon · All Rights Reserved</span>
   <ul class="footer-links">
-    <li><a href="https://paulmoon.com/about">About</a></li>
-    <li><a href="https://paulmoon.com/portfolio">Portfolio</a></li>
-    <li><a href="https://paulmoon.com/results">Results</a></li>
-    <li><a href="https://paulmoon.com/photos">Photos + UI/UX</a></li>
-    <li><a href="https://paulmoon.com/contact">Contact</a></li>
+    <li><a href="#philosophy-section">About</a></li>
+    <li><a href="paulmoon-portfolio.html">Portfolio</a></li>
+    <li><a href="#results-section">Results</a></li>
+    <li><a href="#contact-section">Contact</a></li>
   </ul>
 </footer>
 
@@ -944,11 +945,10 @@ document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.st
 })();
 
 // ── SCROLL REVEAL ──
-const revealAll = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
 const revObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } });
 }, { threshold: 0.08 });
-revealAll.forEach(el => revObs.observe(el));
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => revObs.observe(el));
 
 // ── NAV SCROLL ──
 const nav = document.getElementById('main-nav');
@@ -1011,19 +1011,17 @@ document.getElementById('portfolio-filter').addEventListener('click', e => {
   });
 });
 
-// ── PARALLAX HERO IMAGE ──
+// ── PARALLAX HERO ──
 window.addEventListener('scroll', () => {
   const heroImg = document.querySelector('.hero-img');
   if(heroImg) heroImg.style.transform = `scale(1) translateY(${window.scrollY*0.12}px)`;
 }, {passive:true});
 
 // ── MAGNETIC BUTTONS ──
-document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+document.querySelectorAll('.btn-primary,.btn-outline').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
-    const dx = (e.clientX - r.left - r.width/2) * 0.25;
-    const dy = (e.clientY - r.top - r.height/2) * 0.25;
-    btn.style.transform = `translate(${dx}px,${dy}px)`;
+    btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*0.25}px,${(e.clientY-r.top-r.height/2)*0.25}px)`;
   });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
