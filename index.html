@@ -48,9 +48,9 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:60px;he
 @keyframes loaderBar{0%{width:0}60%{width:70%}100%{width:100%}}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(245,240,232,0);backdrop-filter:blur(0px);border-bottom:0.5px solid transparent;transition:all 0.4s ease}
-nav.scrolled{background:rgba(245,240,232,0.95);backdrop-filter:blur(20px);border-bottom-color:var(--border);padding:0.8rem 3rem}
-.nav-logo img{height:44px;width:auto;display:block;opacity:1;transition:opacity 0.3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(245,240,232,0.97);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border);transition:padding 0.4s ease}
+nav.scrolled{padding:0.8rem 3rem}
+.nav-logo img{height:44px;width:auto;display:block;opacity:1;}
 .nav-links{display:flex;gap:2.2rem;list-style:none}
 .nav-links a{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;font-weight:600;transition:color 0.2s;position:relative;padding-bottom:3px}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s}
